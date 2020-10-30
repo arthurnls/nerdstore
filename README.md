@@ -64,7 +64,7 @@
 ### Controllers
 
 - Commands used to generate Controllers
-        - rails g controller houses index show
+    - rails g controller houses index show
 
 ## ERD Diagram
 <div style="display: block; text-align: center; padding: 1rem; max-width:100%; height:auto;">
