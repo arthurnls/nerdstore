@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cost_shipping: 9.99
+  cost_GST: 9.99
+  cost_PST: 9.99
+  cost_HST: 9.99
+  cost_discount: 9.99
+  shipping_address: MyString
+
+two:
+  cost_shipping: 9.99
+  cost_GST: 9.99
+  cost_PST: 9.99
+  cost_HST: 9.99
+  cost_discount: 9.99
+  shipping_address: MyString
