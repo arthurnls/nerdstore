@@ -64,7 +64,14 @@
 ### Controllers
 
 - Commands used to generate Controllers
-    - rails g controller houses index show
+    - rails g controller pages account about contact cart checkout
+    - rails g controller departments show
+    - rails g controller categories index show
+    - rails g controller products index show
+
+## Possibly Missing TO-DOs
+
+- Might need a few controllers later? A order/checkout maybe?
 
 ## ERD Diagram
 <div style="display: block; text-align: center; padding: 1rem; max-width:100%; height:auto;">
