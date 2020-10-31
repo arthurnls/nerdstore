@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_31_005439) do
+ActiveRecord::Schema.define(version: 2020_10_31_014618) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -82,14 +82,14 @@ ActiveRecord::Schema.define(version: 2020_10_31_005439) do
   end
 
   create_table "order_details", force: :cascade do |t|
-    t.integer "customer_id", null: false
     t.integer "order_id", null: false
     t.integer "quatity"
     t.decimal "purchase_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["customer_id"], name: "index_order_details_on_customer_id"
+    t.integer "product_id"
     t.index ["order_id"], name: "index_order_details_on_order_id"
+    t.index ["product_id"], name: "index_order_details_on_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -101,6 +101,8 @@ ActiveRecord::Schema.define(version: 2020_10_31_005439) do
     t.string "shipping_address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "customer_id", null: false
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -126,8 +128,8 @@ ActiveRecord::Schema.define(version: 2020_10_31_005439) do
   add_foreign_key "categories", "departments"
   add_foreign_key "customers", "provinces"
   add_foreign_key "images", "products"
-  add_foreign_key "order_details", "customers"
   add_foreign_key "order_details", "orders"
+  add_foreign_key "orders", "customers"
   add_foreign_key "products", "brands"
   add_foreign_key "products", "categories"
 end

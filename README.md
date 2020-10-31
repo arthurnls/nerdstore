@@ -59,7 +59,7 @@
     - rails g model Image path:string position_order:integer product:references
     - rails g model Order cost_shipping:decimal cost_GST:decimal cost_PST:decimal cost_HST:decimal cost_discount:decimal shipping_address:string
 - Relationship Models
-    - rails g model OrderDetail customer:references order:references quatity:integer purchase_price:decimal
+    - rails g model OrderDetail product:references order:references quatity:integer purchase_price:decimal
 
 ### Controllers
 
@@ -69,9 +69,29 @@
     - rails g controller categories index show
     - rails g controller products index show
 
+### Active Admin tabs
+
+- Commands used to generate active admin tabs to add data
+    - rails g active_admin:resource Province
+    - rails g active_admin:resource Customer
+    - rails g active_admin:resource Order
+    - rails g active_admin:resource Brand
+    - rails g active_admin:resource Department
+    - rails g active_admin:resource Category
+    - rails g active_admin:resource Product
+
+### Migrations
+
+- Commands used to generate Migrations later
+    - rails g migration rename_column_products_fix_quantity
+    - rails g migration fix_order_detail_reference
+
 ## Possibly Missing TO-DOs
 
 - Might need a few controllers later? A order/checkout maybe?
+- Add status to order (pending paid shipped)
+- Add tax rate for each province
+- Maybe will need to add active admin for `OrderDetail` and `Image`
 
 ## ERD Diagram
 <div style="display: block; text-align: center; padding: 1rem; max-width:100%; height:auto;">
