@@ -7,13 +7,11 @@ Rails.application.routes.draw do
   get "pages/cart"
   get "pages/checkout"
 
-  get "products/index"
-  get "products/show"
+  resources "products", only: %i[index show]
 
-  get "categories/index"
-  get "categories/show"
+  resources "categories", only: %i[index show]
 
-  get "departments/show"
+  resources "departments", only: %i[show]
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

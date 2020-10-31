@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_30_020335) do
+ActiveRecord::Schema.define(version: 2020_10_31_005439) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 2020_10_30_020335) do
     t.string "name"
     t.text "description"
     t.decimal "price"
-    t.integer "stock_quatity"
+    t.integer "stock_quantity"
     t.integer "brand_id", null: false
     t.integer "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
