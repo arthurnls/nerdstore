@@ -85,8 +85,12 @@
 - Commands used to generate Migrations later
     - rails g migration rename_column_products_fix_quantity
     - rails g migration fix_order_detail_reference
+    - rails g migration add_customer_to_orders customer:references
 
 ## Possibly Missing TO-DOs
+
+- Clean up unneccessary code in application.scss
+- Fix and clean up `navigation_bar` and `header_bar` partials
 
 - Might need a few controllers later? A order/checkout maybe?
 - Add status to order (pending paid shipped)

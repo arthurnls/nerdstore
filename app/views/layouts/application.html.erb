@@ -11,13 +11,16 @@
 
   <body>
     <header>
+        <%= render partial: "shared/header_bar" %>
         <%= render partial: "shared/navigation_bar" %>
     </header>
     <div class="container">
-      <section>
-        <%= yield %>
-      </section>
-      <footer>Copyright Arthur Saraiva 2020.</footer>
+      <main>
+        <div class="container">
+          <%= yield %>
+        </div>
+      </main>
+      <footer class="container">Copyright Arthur Saraiva 2020.</footer>
     </div>
   </body>
 </html>
