@@ -89,13 +89,19 @@
 
 ## Possibly Missing TO-DOs
 
-- Clean up unneccessary code in application.scss
-- Fix and clean up `navigation_bar` and `header_bar` partials
+- [x] Clean up unneccessary code in application.scss
+- [] Fix and clean up `navigation_bar` and `header_bar` partials
 
-- Might need a few controllers later? A order/checkout maybe?
-- Add status to order (pending paid shipped)
-- Add tax rate for each province
-- Maybe will need to add active admin for `OrderDetail` and `Image`
+- [] Might need a few controllers later? A order/checkout maybe?
+- [] Add status to order (pending paid shipped)
+- [] Add tax rate for each province
+- [] Maybe will need to add active admin for `OrderDetail` and `Image`
+
+## For future Reference
+
+- Hogwarts on rails 4: page permalink
+- Horses on rails 2: Search form
+- Horses on rails 3: ActiveAdmin and ActiveStorage
 
 ## ERD Diagram
 <div style="display: block; text-align: center; padding: 1rem; max-width:100%; height:auto;">
