@@ -1,2 +1,8 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+
+<h1><%= @product.name%></h1>
+
+<p>Description: <%= @product.description %></p>
+<p>Price: CDN$ <%= number_with_precision(@product.price, :precision => 2) %></p>
+<p>In Stock: <%= @product.stock_quantity %></p>
+<p>Brand: <%= @product.brand.name %></p>
+<p>Category: <%= @product.category.name %></p>

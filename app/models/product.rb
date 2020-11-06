@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :brand
   belongs_to :category
-  has_many :image
+  has_many :images
 
   # Many to Many Relationship to Users table
   has_many :order_details

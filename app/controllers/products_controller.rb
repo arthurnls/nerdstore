@@ -3,5 +3,7 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
-  def show; end
+  def show
+    @product = Product.includes(:brand, :category).find(params[:id])
+  end
 end

@@ -5,10 +5,10 @@
 <% if @products.empty? %>
     <p>There are no products registered.</p>
 <% else %>
-    <ul class="list-group list-inline">
+    <div class="card-deck">
         <% @products.each do |product| %>
-            <li class="list-group-item list-inline-item"><%= link_to product.name, product %></li>
+            <%= render partial: "product", locals: { product: product, images: product.images} %>
         <% end %>
-    </ul>
+    </div>
 <% end %>
 
