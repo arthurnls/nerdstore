@@ -44,7 +44,7 @@ def generate_brands_departments
     brand_name = brand_href.gsub("-", " ").to_s.titleize
 
     # Create the brand
-    # brand = Brand.find_or_create_by(name: brand_name)
+    brand = Brand.find_or_create_by(name: brand_name)
   end
   ######################
   # Generate Departments
@@ -57,7 +57,7 @@ def generate_brands_departments
     department_href = anchor.attribute("href").to_s
 
     # Create the department
-    # department = Department.find_or_create_by(name: department_name)
+    department = Department.find_or_create_by(name: department_name)
 
     ######################
     # Generate Categories
@@ -79,8 +79,8 @@ def generate_brands_departments
         category_name = cat.content
         category_href = "https://nerdstore.com.br" + cat.attribute("href").to_s
         # Create the category
-        # category = department.categories.find_or_create_by(name: category_name)
-        generate_products(category_href, category_name) # category)
+        category = department.categories.find_or_create_by(name: category_name)
+        generate_products(category_href, category) # category)
       end
     else
       categories.each do |cat|
@@ -88,8 +88,8 @@ def generate_brands_departments
         category_name = cat.content
         category_href = cat.attribute("href").to_s
         # Create the category
-        # category = department.categories.find_or_create_by(name: category_name)
-        generate_products(category_href, category_name) # category)
+        category = department.categories.find_or_create_by(name: category_name)
+        generate_products(category_href, category) # category)
       end
     end
   end
@@ -133,6 +133,7 @@ end
 # Products:
 ##########################################
 def generate_products(cat_href, category_object)
+  all_brands = Brand.all
   # Generate Products
   nerdstore_category_html = open(cat_href).read
   nerdstore_category_doc = Nokogiri::HTML(nerdstore_category_html)
@@ -140,31 +141,33 @@ def generate_products(cat_href, category_object)
   products_selector = "body > main > div > div.page-archive > div.page-archive__content > ul > li.product.type-product > a"
   products = nerdstore_category_doc.css(products_selector)
 
-  puts "============================================================"
-  puts "============ #{category_object} ==============="
-  puts "============================================================"
-
+  # Go inside each product URL to scrape product data
   products.each do |prod|
     prod_href = prod.attribute("href").to_s
 
     nerdstore_product_html = open(prod_href).read
     nerdstore_product_doc = Nokogiri::HTML(nerdstore_product_html)
 
+    ####################
+    # Scrape data
+    # Scrape Product Name
     product_name_selector = "body > main > div.single-product > div.single-product__container > div.type-product > div.single-product__main-info > div.entry-summary > h1"
     product_name = nerdstore_product_doc.css(product_name_selector)
 
+    # Scrape Product Description
     product_description_selector = "body > main > div.single-product > div.single-product__container > div.type-product > article.single-product__description > div.single-product__description__content"
     product_description = nerdstore_product_doc.css(product_description_selector)
 
+    # Scrape Product Price
     product_price_selector = "body > main > div.single-product > div.single-product__container > div.type-product > div.single-product__main-info > div.entry-summary > p.price"
     product_price = nerdstore_product_doc.css(product_price_selector)
 
-    # product_image_selector = "body > main > div.single-product > div.single-product__container > div.type-product > div > div.images > div > figure > div.woocommerce-product-gallery__image.flex-active-slide > a > picture > img"
-    # product_image_selector = "body > main > div.single-product > div.single-product__container > div.type-product > div.single-product__main-info > div.images"
+    # Scrape Product first Image
     product_image_selector = "body > main > div.single-product > div.single-product__container > div.type-product > div.single-product__main-info > div.images > figure > div > a"
     product_image = nerdstore_product_doc.css(product_image_selector)
-    # #product-713620
-    #
+
+    ####################
+    # Process data
     processed_name = product_name[0].content
     processed_name.slice! "Pré-Venda "
 
@@ -177,33 +180,50 @@ def generate_products(cat_href, category_object)
 
     processed_image_url = product_image[0].attribute("href").to_s
 
+    ####################
+    # Setup processed data input
     product_qty = rand_qty
     product_name = processed_name
     product_description = processed_description
-    product_price = processed_price
-
+    product_price = processed_price.to_d
     product_image = processed_name.gsub("–", "").gsub("  ", " ").gsub(" ", "-") + ".jpg"
-    puts product_image
 
+    ####################
     # Create Product
-    # prod = Product.create(
-    #   name:           product_name,
-    #   description:    product_description,
-    #   price:          product_price,
-    #   stock_quantity: product_qty
-    # )
+    created_product = Product.create(
+      name:           product_name,
+      description:    product_description,
+      price:          product_price,
+      stock_quantity: product_qty
+    )
     # Attach Brand
-    # prod.brand = brand
+    brand_index_size = all_brands.size - 1
+    brand_index = rand(0..brand_index_size)
+    created_product.brand = all_brands[brand_index]
     # Attach Category
-    # prod.category = cat
-    # prod.save
+    created_product.category = category_object
+    created_product.save
 
     # Create Image
-    # no_image = prod.images.create(path: "image_coming_soon.jpg", position_order: 1)
+    created_image = created_product.images.create(path: product_image, position_order: 1)
+
+    ##############################################
+    # Process image URL and download image.
+    # Image will be added inside assets/images/Products/{product_name}/{image_path}
+    ##############################################
+    path_to_assets = "../../app/assets/images/Products/"
+    subpath_after_assets = "#{created_product.name}/"
+    path_to_save = path_to_assets + subpath_after_assets
+    Dir.mkdir(path_to_save) unless File.exist?(path_to_save)
+    # Set file path to save
+    saved_file_path = path_to_save + created_image.path
+    # download image and save
+    read_image = open(processed_image_url).read
+    File.open(saved_file_path, "wb") do |file|
+      file.write read_image
+    end
+    ##############################################
   end
-  puts "#{category_object} found #{products.size} products"
-  puts "============================================="
-  puts ""
 end
 
 ##########################################
@@ -228,18 +248,4 @@ def rand_qty
 end
 ##########################################
 ##########################################
-
-path_to_assets = "../../app/assets/images/Products/"
-subpath_after_assets = "TEST-PRODUCT/"
-path_to_save = path_to_assets + subpath_after_assets
-Dir.mkdir(path_to_save) unless File.exist?(path_to_save)
-saved_file_path = path_to_save + "image.jpg"
-puts saved_file_path
-
-img_url = "https://nerdstore.com.br/wp-content/uploads/2020/10/camiseta-melhorterpaz-srk-01-2.jpg"
-read_image = open(img_url).read
-File.open(saved_file_path, "wb") do |file|
-  file.write read_image
-end
-
 generate_brands_departments
