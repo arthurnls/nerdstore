@@ -229,8 +229,8 @@ end
 ##########################################
 ##########################################
 
-path_to_assets = "../../app/assets/images/"
-subpath_after_assets = "TESTE/"
+path_to_assets = "../../app/assets/images/Products/"
+subpath_after_assets = "TEST-PRODUCT/"
 path_to_save = path_to_assets + subpath_after_assets
 Dir.mkdir(path_to_save) unless File.exist?(path_to_save)
 saved_file_path = path_to_save + "image.jpg"
