@@ -68,6 +68,7 @@
     - rails g controller departments show
     - rails g controller categories index show
     - rails g controller products index show
+    - rails g controller brands index show
 
 ### Active Admin tabs
 
@@ -90,7 +91,9 @@
 ## Possibly Missing TO-DOs
 
 - [x] Clean up unneccessary code in application.scss
-- [] Fix and clean up `navigation_bar` and `header_bar` partials
+- [x] Fix and clean up `navigation_bar` and `header_bar` partials
+- [] Update the other index and show pages (departments categories brands)
+- [] Add seed for Customer and Provinces
 
 - [] Might need a few controllers later? A order/checkout maybe?
 - [] Add status to order (pending paid shipped)

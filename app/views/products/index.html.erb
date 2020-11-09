@@ -10,7 +10,7 @@
         <% @products.each do |product| %>
             <%= render partial: "product", locals: { product: product } %>
             <% count = count + 1 %>
-            <% break if count >= 8 %>
+            <% break if count >= 50 %>
         <% end %>
     </div>
 <% end %>

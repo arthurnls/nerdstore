@@ -4,4 +4,6 @@ class Order < ApplicationRecord
   # Many to Many Relationship to Users table
   has_many :order_details
   has_many :products, through: :order_details
+
+  validates :cost_shipping, :cost_GST, :cost_PST, :cost_HST, :cost_discount, :shipping_address, :customer, presence: true
 end

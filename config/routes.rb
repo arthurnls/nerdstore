@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources "departments", only: %i[show]
 
+  resources "brands", only: %i[index show]
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 end

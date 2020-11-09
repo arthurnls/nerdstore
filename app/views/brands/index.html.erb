@@ -1,0 +1,13 @@
+<h1>All Brands</h1>
+<p>List of all brands</p>
+
+
+<% if @brands.empty? %>
+    <p>There are no brands registered.</p>
+<% else %>
+    <ul class="list-group list-inline">
+        <% @brands.each do |brand| %>
+            <li class="list-group-item list-inline-item"><%= link_to brand.name, brand %> (<%= brand.products.count %>)</li>
+        <% end %>
+    </ul>
+<% end %>
