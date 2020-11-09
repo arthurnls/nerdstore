@@ -8,5 +8,6 @@ class Product < ApplicationRecord
   has_many :orders, through: :order_details
 
   validates :name, :price, :stock_quantity, presence: true
+  validates :name, uniqueness: true
   # validates :price, numericality: { only_integer: true }
 end

@@ -4,7 +4,8 @@
         <% if images.empty? %>
             <%= image_tag("image_coming_soon.jpg", alt:product.name + " missing image", class:"card-img-top") %>
         <% else %>
-            <%= image_tag(images[0].path, alt:product.name + " image", class:"card-img-top") %>
+            <%= images[0].path %>
+            <%# <%= image_tag("Products/" + product.name.gsub(" ", "-") + "/" + images[0].path, alt:product.name + " image", class:"card-img-top") %> %>
         <% end %>
         <div class="card-body">
             <h5 class="card-title product-title"><%= product.name %></h5>
