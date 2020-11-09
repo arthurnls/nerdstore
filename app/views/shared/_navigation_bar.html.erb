@@ -2,13 +2,19 @@
     <div class="header-desktop__nav__container container">
         <ul class="header-desktop__nav__menu">
             <li class="header-desktop__nav__menu__parent">
-                <a href="https://nerdstore.com.br/categoria/vestuario/camisetas/"
-                    class="header-desktop__nav__trigger">
-                    <%= render partial: "shared/components/burger_icon" %>
-                    Todas as categorias
-                </a>
+                <%= link_to "All Products", products_path, class: "header-desktop__nav__trigger#{' header-desktop__nav__trigger--active' if current_page? products_path}" %>
             </li>
+            <% Department.all.order('name ASC').each do |department| %>
+                <li class="header-desktop__nav__menu__parent">
+                    <%= link_to department.name, department, class: "header-desktop__nav__trigger#{' header-desktop__nav__trigger--active' if current_page? department_path(department.id)}" %>
+                </li>
+            <% end %>
             <li class="header-desktop__nav__menu__parent">
+                <%= link_to "Categories", categories_path, class: "header-desktop__nav__trigger#{' header-desktop__nav__trigger--active' if current_page? categories_path}" %>
+            </li>
+
+
+            <%# <li class="header-desktop__nav__menu__parent">
                 <a href="https://nerdstore.com.br/categoria/vestuario/camisetas/"
                     class="header-desktop__nav__trigger">
                     Camisetas
@@ -43,7 +49,7 @@
                     class="header-desktop__nav__trigger">
                     Decoração
                 </a>
-            </li>
+            </li> %>
         </ul>
     </div>
 </nav>

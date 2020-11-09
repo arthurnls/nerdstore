@@ -1,6 +1,6 @@
 <div class="header-desktop__main">
     <div class="header-desktop__main__container container">
-        <a class="header-desktop__main__logo" href="https://nerdstore.com.br" aria-label="Página inicial">
+        <%= link_to root_path, class: "header-desktop__main__logo" do %>
             <svg width="227" height="34" viewBox="0 0 227 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M46.6311 22.4738C46.6651 22.1508 46.6821 21.8278 46.6821 21.5048C46.6821 14.9598 41.3781 9.65576 34.8331 9.65576C28.2881 9.65576 22.9841 14.9598 22.9841 21.5048C22.9841 28.0498 28.2881 33.3538 34.8331 33.3538C40.2221 33.3538 44.7611 29.7498 46.2061 24.8198H37.7741C37.2301 25.6358 35.9721 25.9418 34.8331 25.9418C32.2831 25.9418 30.9401 24.4458 30.4981 22.4568H46.6311V22.4738ZM34.8331 17.0678C36.9751 17.0678 38.0971 18.1048 38.8281 19.5838H30.8381C31.5691 18.1048 32.7591 17.0678 34.8331 17.0678Z"
@@ -34,7 +34,7 @@
                     d="M214.268 0C207.723 0 202.419 5.304 202.419 11.849C202.419 18.394 207.723 23.698 214.268 23.698C220.813 23.698 226.117 18.394 226.117 11.849C226.117 5.304 220.813 0 214.268 0ZM214.268 21.131C209.117 21.131 204.935 16.983 204.935 11.849C204.935 6.715 209.117 2.567 214.268 2.567C219.419 2.567 223.601 6.715 223.601 11.849C223.601 16.983 219.419 21.131 214.268 21.131Z"
                     fill="white"></path>
             </svg>
-        </a>
+        <% end %>
         <form class="header-desktop__main__search" action="/" method="get" itemprop="potentialAction" itemscope=""
             itemtype="http://schema.org/SearchAction" autocomplete="off">
             <meta itemprop="url" content="https://nerdstore.com.br">

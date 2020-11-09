@@ -82,6 +82,7 @@
     border-radius: 16px;
     padding: 0.5rem;
 }
+.header-desktop__main__account__trigger--active,
 .header-desktop__main__account__trigger:hover {
     color: #eee;
     background-color: #30dce7;
@@ -175,25 +176,17 @@
     padding-right: 16px;
     height: 100%;
 }
+.header-desktop__nav__menu > .header-desktop__nav__menu__parent > .header-desktop__nav__trigger--active,
+.header-desktop__nav__menu > .header-desktop__nav__menu__parent > .header-desktop__nav__trigger:hover {
+    background-color: #00acb7;
+    color: #fff;
+}
 .header-desktop__nav__trigger__icon {
     margin-right: 18px;
     margin-bottom: -3px;
 }
 .header-desktop__nav__trigger__arrow {
     margin-left: 8px;
-}
-.header-desktop__nav__trigger path {
-    fill: #00acb7;
-}
-.header-desktop__nav__trigger--active {
-    color: #fff;
-}
-.header-desktop__nav__trigger--active path {
-    fill: #fff;
-}
-.header-desktop__nav__trigger--all-categories {
-    margin-left: -16px;
-    color: #00acb7;
 }
 .header-desktop__nav__menu {
     display: -webkit-box;
@@ -202,10 +195,6 @@
 }
 .header-desktop__nav__menu__parent {
     height: 100%;
-}
-.header-desktop__nav__trigger:hover {
-    background-color: #00acb7;
-    color: #fff;
 }
 
 footer {
