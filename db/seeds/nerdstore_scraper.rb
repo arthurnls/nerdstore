@@ -22,7 +22,7 @@ def generate_brands_departments
     brand_name = brand_href.gsub("-", " ").to_s.titleize
 
     # Create the brand
-    brand = Brand.find_or_create_by(name: brand_name)
+    brand = Brand.find_or_create_by(name: translate(brand_name))
   end
   ######################
   # Generate Departments
@@ -35,7 +35,7 @@ def generate_brands_departments
     department_href = anchor.attribute("href").to_s
 
     # Create the department
-    department = Department.find_or_create_by(name: department_name)
+    department = Department.find_or_create_by(name: translate(department_name))
 
     ######################
     # Generate Categories
@@ -57,7 +57,7 @@ def generate_brands_departments
         category_name = cat.content
         category_href = "https://nerdstore.com.br" + cat.attribute("href").to_s
         # Create the category
-        category = department.categories.find_or_create_by(name: category_name)
+        category = department.categories.find_or_create_by(name: translate(category_name))
         generate_products(category_href, category) # category)
       end
     else
@@ -66,7 +66,7 @@ def generate_brands_departments
         category_name = cat.content
         category_href = cat.attribute("href").to_s
         # Create the category
-        category = department.categories.find_or_create_by(name: category_name)
+        category = department.categories.find_or_create_by(name: translate(category_name))
         generate_products(category_href, category) # category)
       end
     end
@@ -90,7 +90,11 @@ def generate_products(cat_href, category_object)
   products.each do |prod|
     prod_href = prod.attribute("href").to_s
 
-    nerdstore_product_html = open(prod_href).read
+    begin
+      nerdstore_product_html = open(prod_href).read
+    rescue Exception => e
+      next
+    end
     nerdstore_product_doc = Nokogiri::HTML(nerdstore_product_html)
 
     ####################
@@ -115,7 +119,7 @@ def generate_products(cat_href, category_object)
     # Process data
     processed_name = product_name[0].content
     processed_name.slice! "Pré-Venda "
-    processed_name = processed_name.gsub("/", "-")
+    processed_name = processed_name.gsub!(/[^0-9A-zÀ-ú\s]/, "-")
 
     processed_description = product_description[0].content
     processed_description.slice! "Descrição"
@@ -132,7 +136,10 @@ def generate_products(cat_href, category_object)
     product_name = processed_name
     product_description = processed_description
     product_price = processed_price.to_d
-    product_image = processed_name.gsub("–", "").gsub("  ", " ").gsub(" ", "-") + ".jpg"
+
+    next if processed_name.nil?
+
+    product_image = processed_name.gsub!(/[^0-9A-zÀ-ú\s]/, "").gsub("  ", " ").gsub(" ", "-") + ".jpg"
 
     ####################
     # Create Product
@@ -157,7 +164,7 @@ def generate_products(cat_href, category_object)
     # Image will be added inside assets/images/Products/{product_name}/{image_path}
     ##############################################
     path_to_assets = "app/assets/images/Products/"
-    subpath_after_assets = created_product.name.gsub(" ", "") + "/"
+    subpath_after_assets = created_product.name.gsub(" ", "-") + "/"
     path_to_save = path_to_assets + subpath_after_assets
     Dir.mkdir(path_to_save) unless File.exist?(path_to_save)
     # Set file path to save
@@ -177,7 +184,7 @@ def generate_products(cat_href, category_object)
         file.write read_image
       end
       # Create Image
-      created_product.images.create(path: "image_coming_soon.jpg", position_order: 1)
+      created_product.images.create(path: path_to_save, position_order: 1)
     end
     ##############################################
   end
@@ -193,4 +200,4 @@ generate_brands_departments
 # Finish building translate function
 # Use translate function to translate all categories, departments, brands to english
 # Run rails db:reset again
-puts translate("Livros")
+# puts translate("Livros")
