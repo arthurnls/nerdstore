@@ -7,9 +7,7 @@
 <% else %>
     <div class="card-deck">
         <% @products.each do |product| %>
-            <%= render partial: "product",
-                       object: product,
-                       locals: { images: product.images } %>
+            <%= render partial: "product", locals: { product: product } %>
         <% end %>
     </div>
 <% end %>

@@ -119,7 +119,7 @@ def generate_products(cat_href, category_object)
     # Process data
     processed_name = product_name[0].content
     processed_name.slice! "Pré-Venda "
-    processed_name = processed_name.gsub!(/[^0-9A-zÀ-ú\s]/, "-")
+    processed_name = processed_name.gsub!(/[^0-9A-Za-zÀ-ú\s]/, "-")
 
     processed_description = product_description[0].content
     processed_description.slice! "Descrição"
@@ -139,7 +139,7 @@ def generate_products(cat_href, category_object)
 
     next if processed_name.nil?
 
-    product_image = processed_name.gsub!(/[^0-9A-zÀ-ú\s]/, "").gsub("  ", " ").gsub(" ", "-") + ".jpg"
+    product_image = processed_name.gsub(" ", "-") + ".jpg"
 
     ####################
     # Create Product
@@ -161,11 +161,9 @@ def generate_products(cat_href, category_object)
 
     ##############################################
     # Process image URL and download image.
-    # Image will be added inside assets/images/Products/{product_name}/{image_path}
+    # Image will be added inside assets/images/Products/{image_path}
     ##############################################
-    path_to_assets = "app/assets/images/Products/"
-    subpath_after_assets = created_product.name.gsub(" ", "-") + "/"
-    path_to_save = path_to_assets + subpath_after_assets
+    path_to_save = "app/assets/images/Products/"
     Dir.mkdir(path_to_save) unless File.exist?(path_to_save)
     # Set file path to save
     saved_file_path = path_to_save + product_image
@@ -179,12 +177,7 @@ def generate_products(cat_href, category_object)
       created_product.images.create(path: product_image, position_order: 1)
     rescue Exception => e
       # If got here, was unable to download the image. Create the default "image_coming_soon.jpg"
-      read_image = open("app/assets/images/image_coming_soon.jpg").read
-      File.open(saved_file_path, "wb") do |file|
-        file.write read_image
-      end
-      # Create Image
-      created_product.images.create(path: path_to_save, position_order: 1)
+      created_product.images.create(path: "image_coming_soon.jpg", position_order: 1)
     end
     ##############################################
   end
@@ -195,9 +188,3 @@ def rand_qty
 end
 
 generate_brands_departments
-
-# TO DO:
-# Finish building translate function
-# Use translate function to translate all categories, departments, brands to english
-# Run rails db:reset again
-# puts translate("Livros")
