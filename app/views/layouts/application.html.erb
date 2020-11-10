@@ -20,7 +20,14 @@
           <%= yield %>
         </div>
       </main>
-      <footer class="container">Copyright Arthur Saraiva 2020.</footer>
     </div>
+      <footer class="text-center">
+        <div class="row mb-2">
+          <div class="col"><%= link_to "About Us", about_path %> &nbsp;&nbsp;|&nbsp;&nbsp; <%= link_to "Contact Us", contact_path %></div>
+        </div>
+        <div class="row">
+          <div class="col">Copyright Arthur Saraiva 2020.</div>
+        </div>
+      </footer>
   </body>
 </html>

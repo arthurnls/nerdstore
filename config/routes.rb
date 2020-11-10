@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   root to: "products#index"
 
-  get "pages/account"
-  get "pages/about"
-  get "pages/contact"
-  get "pages/cart"
-  get "pages/checkout"
+  get "about", to: "pages#about"
+  get "contact", to: "pages#contact"
+  get "account", to: "pages#account"
+  get "cart", to: "pages#cart"
+  get "checkout", to: "pages#checkout"
 
   resources "products", only: %i[index show]
 
