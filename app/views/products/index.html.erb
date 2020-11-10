@@ -1,17 +1,11 @@
 <h1>All Products</h1>
-<p>List of all products</p>
-
 
 <% if @products.empty? %>
-    <p>There are no products registered.</p>
+    <p>There are no products found.</p>
 <% else %>
+    <p>List of all products</p>
     <div class="card-deck">
-        <% count = 0 %>
-        <% @products.each do |product| %>
-            <%= render partial: "product", locals: { product: product } %>
-            <% count = count + 1 %>
-            <% break if count >= 50 %>
-        <% end %>
+        <%= render @products %>
     </div>
 <% end %>
 

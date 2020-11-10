@@ -1,2 +1,10 @@
-<h1>Brands#show</h1>
-<p>Find me in app/views/brands/show.html.erb</p>
+<h1><%= @brand.name %></h1>
+
+<% if @brand.products.empty? %>
+    <p>There are no products found.</p>
+<% else %>
+    <p>Listing all <%= @brand.products.count %> products</p>
+    <div class="card-deck">
+        <%= render @brand.products %>
+    </div>
+<% end %>

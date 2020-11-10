@@ -8,7 +8,7 @@
         <% end %>
         <div class="card-body">
             <h6 class="card-title product-title"><%= product.name %></h6>
-            <p class="card-text product-price font-weight-bold">CDN$ <%= product.price %></p>
+            <p class="card-text product-price font-weight-bold">CDN$ <%= number_with_precision(product.price, precision: 2) %></p>
             <div class="text-center">
                 <div class="btn btn-product-details">Click for Details</div>
             </div>

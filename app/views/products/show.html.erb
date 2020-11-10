@@ -9,7 +9,7 @@
         
 
 <p>Description: <%= @product.description %></p>
-<p>Price: CDN$ <%= number_with_precision(@product.price, :precision => 2) %></p>
+<p class="font-weight-bold">Price: CDN$ <%= number_with_precision(@product.price, precision: 2) %></p>
 <p>In Stock: <%= @product.stock_quantity %></p>
 <p>Brand: <%= @product.brand.name %></p>
 <p>Category: <%= @product.category.name %></p>
