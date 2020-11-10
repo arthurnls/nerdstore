@@ -1,5 +1,19 @@
+<div class="breadcrumbs">
+    <span>
+        <span>
+            <%= link_to "Home", root_path %> » 
+            <span>
+                <%= link_to @product.category.department.name, @product.category.department %> »
+                <span>
+                    <%= link_to @product.category.name, @product.category %> »
+                    <strong class="breadcrumb_last" aria-current="page"><%= @product.name %></strong>
+                </span>
+            </span>
+        </span>
+    </span>
+</div>
 
-<h1><%= @product.name%></h1>
+<h1><%= @product.name %></h1>
 
 <% if @product.images.empty? %>
     <%= image_tag("image_coming_soon.jpg", alt:@product.name + " missing image", class:"card-img-top product-image") %>

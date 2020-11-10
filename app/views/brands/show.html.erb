@@ -1,3 +1,17 @@
+<div class="breadcrumbs">
+    <span>
+        <span>
+            <%= link_to "Home", root_path %> » 
+            <span>
+                <%= link_to "Brands", brands_path %> »
+                <span>
+                    <strong class="breadcrumb_last" aria-current="page"><%= @brand.name %></strong>
+                </span>
+            </span>
+        </span>
+    </span>
+</div>
+
 <h1><%= @brand.name %></h1>
 
 <% if @brand.products.empty? %>

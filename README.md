@@ -92,7 +92,9 @@
 
 - [x] Clean up unneccessary code in application.scss
 - [x] Fix and clean up `navigation_bar` and `header_bar` partials
-- [] Update the other index and show pages (departments categories brands)
+- [x] Update the other index and show pages (departments categories brands)
+- [] Add Breadcrumbs
+- [] Add contact form to contact page
 - [] Add seed for Customer and Provinces
 
 - [] Might need a few controllers later? A order/checkout maybe?

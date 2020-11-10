@@ -4,14 +4,14 @@
             <li class="header-desktop__nav__menu__parent">
                 <%= link_to "All Products", products_path, class: "header-desktop__nav__trigger#{' header-desktop__nav__trigger--active' if current_page? products_path}" %>
             </li>
-            <li class="header-desktop__nav__menu__parent">
-                <%= link_to "Brands", brands_path, class: "header-desktop__nav__trigger#{' header-desktop__nav__trigger--active' if current_page? brands_path}" %>
-            </li>
             <% Department.all.order('name ASC').each do |department| %>
                 <li class="header-desktop__nav__menu__parent">
                     <%= link_to department.name, department, class: "header-desktop__nav__trigger#{' header-desktop__nav__trigger--active' if current_page? department_path(department.id)}" %>
                 </li>
             <% end %>
+            <li class="header-desktop__nav__menu__parent">
+                <%= link_to "Brands", brands_path, class: "header-desktop__nav__trigger#{' header-desktop__nav__trigger--active' if current_page? brands_path}" %>
+            </li>
             <li class="header-desktop__nav__menu__parent">
                 <%= link_to "Categories", categories_path, class: "header-desktop__nav__trigger#{' header-desktop__nav__trigger--active' if current_page? categories_path}" %>
             </li>

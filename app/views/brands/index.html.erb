@@ -1,14 +1,25 @@
+<div class="breadcrumbs">
+    <span>
+        <span>
+            <%= link_to "Home", root_path %> » 
+            <span>
+                <strong class="breadcrumb_last" aria-current="page">Brands</strong>
+            </span>
+        </span>
+    </span>
+</div>
+
 <h1>All Brands</h1>
 
 <% if @brands.empty? %>
-    <p>There are no brands registered.</p>
+<p>There are no brands registered.</p>
 <% else %>
-    <p>Listing all <%= @brands.count %> brands</p>
-    <ul class="list-group list-inline">
-        <% @brands.each do |brand| %>
-            <li class="">
-            <%= link_to "#{brand.name} (#{brand.products.count})", brand, class: "list-group-item list-inline-item d-block border-0" %>
-            </li>
-        <% end %>
-    </ul>
+<p>Listing all <%= @brands.count %> brands</p>
+<ul class="list-group list-inline">
+    <% @brands.each do |brand| %>
+    <li class="">
+        <%= link_to "#{brand.name} (#{brand.products.count})", brand, class: "list-group-item list-inline-item d-block border-0" %>
+    </li>
+    <% end %>
+</ul>
 <% end %>
