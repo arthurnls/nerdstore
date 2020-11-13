@@ -100,13 +100,18 @@
 - [x] Fix and clean up `navigation_bar` and `header_bar` partials
 - [x] Update the other index and show pages (departments categories brands)
 - [x] Add Breadcrumbs
-- [] Add contact form to contact page
 - [] Add seed for Customer and Provinces
+- [] Add pagination in products listings.
+- [] Add filtering in products listings.
+- [] Add searching
+- [] Add contact form to contact page
 
 - [] Might need a few controllers later? A order/checkout maybe?
 - [] Add status to order (pending paid shipped)
 - [] Add tax rate for each province
 - [] Maybe will need to add active admin for `OrderDetail` and `Image`
+
+- [] Being able to edit contact and about page. Worth 2PTs
 
 ## For future Reference
 
