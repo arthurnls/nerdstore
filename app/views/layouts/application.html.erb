@@ -14,7 +14,7 @@
         <%= render partial: "shared/header_bar" %>
         <%= render partial: "shared/navigation_bar" %>
     </header>
-    <div class="container<%= ' container-white' if current_page? product_path %>">
+    <div class="container<%= ' container-white' if controller.controller_name == 'products' && controller.action_name == 'show' %>">
       <main>
         <div class="container">
           <%= yield %>
