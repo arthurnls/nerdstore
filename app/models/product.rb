@@ -3,6 +3,11 @@ class Product < ApplicationRecord
   belongs_to :category
   has_many :images
 
+  ###################
+  # Adding image upload
+  has_many_attached :asimages
+  ###################
+
   # Many to Many Relationship to Users table
   has_many :order_details
   has_many :orders, through: :order_details
