@@ -94,3 +94,8 @@ li {
 .product-price {
     font-size: 1.2rem;
 }
+.description > p > br {
+    display: block;
+    content: "";
+    margin-bottom: 1rem;
+}
