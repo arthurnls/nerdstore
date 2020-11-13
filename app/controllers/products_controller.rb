@@ -1,9 +1,9 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.includes(:brand, { category: [:department] }, :images).all
+    @products = Product.includes(:brand, { category: [:department] }).all
   end
 
   def show
-    @product = Product.includes(:brand, { category: [:department] }, :images).find(params[:id])
+    @product = Product.includes(:brand, { category: [:department] }).find(params[:id])
   end
 end

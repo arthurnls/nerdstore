@@ -48,7 +48,9 @@ li {
     margin-left: auto;
     margin-right: auto;
 }
-
+.container-white {
+    background-color: #fff;
+}
 .breadcrumbs {
     font-size: 14px;
     color: #757575;
@@ -93,4 +95,9 @@ li {
 }
 .product-price {
     font-size: 1.2rem;
+}
+.description > p > br {
+    display: block;
+    content: "";
+    margin-bottom: 1rem;
 }

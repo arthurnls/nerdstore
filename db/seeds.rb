@@ -4,8 +4,9 @@ end
 
 puts "Seed script started."
 puts "Reseting Products folder"
-FileUtils.rm_rf("app/assets/images/Products")
-FileUtils.mkdir("app/assets/images/Products")
+FileUtils.rm_rf("storage")
+# FileUtils.rm_rf("app/assets/images/Products")
+# FileUtils.mkdir("app/assets/images/Products")
 
 # Run NerdstoreScraper code
 puts "Starting web scrapping"
