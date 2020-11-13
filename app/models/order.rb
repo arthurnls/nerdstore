@@ -6,4 +6,6 @@ class Order < ApplicationRecord
   has_many :products, through: :order_details
 
   validates :cost_shipping, :cost_GST, :cost_PST, :cost_HST, :cost_discount, :shipping_address, :customer, presence: true
+
+  validates :cost_shipping, :cost_GST, :cost_PST, :cost_HST, :cost_discount, numericality: true
 end
