@@ -56,8 +56,14 @@ def generate_brands_departments
         # parsing data to get Category Name through anchor tag.
         category_name = cat.content
         category_href = "https://nerdstore.com.br" + cat.attribute("href").to_s
+
+        category_name = translate(category_name)
+        category_name = "#{department.name} - #{category_name}" if category_name.include? "CDN$"
         # Create the category
-        category = department.categories.find_or_create_by(name: translate(category_name))
+        category = department.categories.find_or_create_by(name: category_name)
+        # category = Category.find_or_create_by(name: translate(category_name))
+        # category.department = department
+        # category.save
         generate_products(category_href, category) # category)
       end
     else
@@ -65,9 +71,15 @@ def generate_brands_departments
         # parsing data to get Category Name through anchor tag.
         category_name = cat.content
         category_href = cat.attribute("href").to_s
+
+        category_name = translate(category_name)
+        category_name = "#{department.name} - #{category_name}" if category_name.include? "CDN$"
         # Create the category
-        category = department.categories.find_or_create_by(name: translate(category_name))
-        generate_products(category_href, category) # category)
+        category = department.categories.find_or_create_by(name: category_name)
+        # category = Category.find_or_create_by(name: category_name)
+        # category.department = department
+        # category.save
+        generate_products(category_href, category)
       end
     end
   end
@@ -168,30 +180,10 @@ def generate_products(cat_href, category_object)
     # Set file path to save
     saved_file_path = path_to_save + product_image
     begin
-      #############################
-      ###### OLD CODE ##########
-      #############################
-      # # download image and save
-      # read_image = open(processed_image_url).read
-      # File.open(saved_file_path, "wb") do |file|
-      #   file.write read_image
-      # end
-      # # Create Image
-      # created_product.images.create(path: product_image, position_order: 1)
-      #############################
-      ###### NEW CODE ##########
-      #############################
       downloaded_image = open(processed_image_url)
       created_product.images.attach(io: downloaded_image, filename: product_image)
-      sleep(1)
-      #############################
     rescue Exception => e
-      #############################
-      ###### OLD CODE ##########
-      #############################
-      # # If got here, was unable to download the image. Create the default "image_coming_soon.jpg"
-      # created_product.images.create(path: "image_coming_soon.jpg", position_order: 1)
-      #############################
+      # if failed, no need to add image. Frontend will show a image_coming_soon.jpg instead
     end
     ##############################################
   end
