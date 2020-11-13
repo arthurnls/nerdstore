@@ -168,16 +168,30 @@ def generate_products(cat_href, category_object)
     # Set file path to save
     saved_file_path = path_to_save + product_image
     begin
-      # download image and save
-      read_image = open(processed_image_url).read
-      File.open(saved_file_path, "wb") do |file|
-        file.write read_image
-      end
-      # Create Image
-      created_product.images.create(path: product_image, position_order: 1)
+      #############################
+      ###### OLD CODE ##########
+      #############################
+      # # download image and save
+      # read_image = open(processed_image_url).read
+      # File.open(saved_file_path, "wb") do |file|
+      #   file.write read_image
+      # end
+      # # Create Image
+      # created_product.images.create(path: product_image, position_order: 1)
+      #############################
+      ###### NEW CODE ##########
+      #############################
+      downloaded_image = open(processed_image_url)
+      created_product.images.attach(io: downloaded_image, filename: product_image)
+      sleep(1)
+      #############################
     rescue Exception => e
-      # If got here, was unable to download the image. Create the default "image_coming_soon.jpg"
-      created_product.images.create(path: "image_coming_soon.jpg", position_order: 1)
+      #############################
+      ###### OLD CODE ##########
+      #############################
+      # # If got here, was unable to download the image. Create the default "image_coming_soon.jpg"
+      # created_product.images.create(path: "image_coming_soon.jpg", position_order: 1)
+      #############################
     end
     ##############################################
   end

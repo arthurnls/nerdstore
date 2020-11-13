@@ -88,6 +88,12 @@
     - rails g migration fix_order_detail_reference
     - rails g migration add_customer_to_orders customer:references
 
+## Images info
+
+- Sizes
+    - Fullsize: 670x670
+    - Thumbnail: 208x208
+
 ## Possibly Missing TO-DOs
 
 - [x] Clean up unneccessary code in application.scss
