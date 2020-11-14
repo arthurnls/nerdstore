@@ -87,6 +87,9 @@
     - rails g migration rename_column_products_fix_quantity
     - rails g migration fix_order_detail_reference
     - rails g migration add_customer_to_orders customer:references
+    - rails g migration add_tax_pst_to_provinces tax_pst:decimal
+    - rails g migration add_tax_gst_to_provinces tax_gst:decimal
+    - rails g migration add_tax_hst_to_provinces tax_hst:decimal
 
 ## Images info
 
@@ -100,10 +103,13 @@
 - [x] Fix and clean up `navigation_bar` and `header_bar` partials
 - [x] Update the other index and show pages (departments categories brands)
 - [x] Add Breadcrumbs
-- [] Add seed for Customer and Provinces
+- [x] Add seed for Provinces
 - [] Add pagination in products listings.
 - [] Add filtering in products listings.
 - [] Add searching
+- [] Implement Twitter Bot
+    - [] Every time you hit search, twitter bot will post?
+- [] Add seed for Customer
 - [] Add contact form to contact page
 
 - [] Might need a few controllers later? A order/checkout maybe?
@@ -112,6 +118,7 @@
 - [] Maybe will need to add active admin for `OrderDetail` and `Image`
 
 - [] Being able to edit contact and about page. Worth 2PTs
+- [] Convert css to use scss variables etc. Worth 2PTs
 
 ## For future Reference
 
