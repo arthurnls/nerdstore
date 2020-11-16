@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "account", to: "pages#account"
   get "cart", to: "pages#cart"
   get "checkout", to: "pages#checkout"
+  get "search", to: "pages#search", as: "search"
 
   resources "products", only: %i[index show]
 

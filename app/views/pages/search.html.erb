@@ -1,0 +1,25 @@
+<div class="breadcrumbs">
+    <span>
+        <span>
+            <%= link_to "Home", root_path %> » 
+            <span>
+                <strong class="breadcrumb_last" aria-current="page">Search</strong>
+            </span>
+        </span>
+    </span>
+</div>
+
+
+<h1>Search Result</h1>
+
+<% if @products.empty? %>
+    <p>There are no products found.</p>
+<% else %>
+    <p>Showing results for searched term <strong>"<%= @searched_term %>"</strong><%= " from category <strong>\"#{@category.name}\"</strong>".html_safe unless @category.nil? %>.</p>
+    <p><%= page_entries_info @products %></p>
+    <div class="card-deck">
+        <%= render @products %>
+    </div>
+<% end %>
+
+<%= paginate @products, window: 2, params: {search_term: @searched_term} %>

@@ -105,7 +105,7 @@
 - [x] Add Breadcrumbs
 - [x] Add seed for Provinces
 - [x] Add pagination in products listings.
-- [] Add filtering in products listings.
+- [x] Add filtering in products listings.
 - [] Add searching
 - [] Implement Twitter Bot
     - [] Every time you hit search, twitter bot will post?
