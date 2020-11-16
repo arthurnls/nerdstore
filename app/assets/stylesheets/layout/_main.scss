@@ -114,6 +114,7 @@ nav.pagination > span > a {
     justify-content: center;
 }
 span.page {
+    display: flex;
     line-height: 1rem;
     color: #757575;
     border-radius: 50px;
@@ -122,10 +123,10 @@ span.page {
     height: 40px;
     justify-content: center;
     align-items: center;
-    display: flex;
 }
 span.first,
 span.last {
+    display: flex;
     line-height: 1rem;
     color: #757575;
     border-radius: 50px;
@@ -134,7 +135,6 @@ span.last {
     height: 40px;
     justify-content: center;
     align-items: center;
-    display: flex;
 }
 span.first:hover,
 span.page:hover,
@@ -156,4 +156,41 @@ span.page.gap {
 span.prev,
 span.next {
     display: none;
+}
+p.page-filter-container {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+span.page-filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    margin-left: 1rem;
+    line-height: 1rem;
+    color: #757575;
+    border-radius: 50px;
+    border: 1px solid #757575;
+    width: auto;
+    height: 2rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+}
+span.page-filter:hover {
+    background: #00acb7;
+    color: #fff;
+}
+span.page-filter.current {
+    background: #00acb7;
+    color: #fff;
+    border: 1px solid #00acb7;
+}
+span.page-filter > a {
+    color: inherit;
+    text-decoration: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
 }

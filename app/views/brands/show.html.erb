@@ -17,6 +17,11 @@
 <% if @products.empty? %>
     <p>There are no products found.</p>
 <% else %>
+    <p class="page-filter-container">Filter by 
+        <span class="page-filter<%= " current" if @filter == "" %>"><%= link_to "Clear Filters", brand_path(@brand.id) %></span>
+        <span class="page-filter<%= " current" if @filter == "new" %>"><%= link_to "New Products", brand_path(@brand.id, filter: "new") %></span>
+        <span class="page-filter<%= " current" if @filter == "recent" %>"><%= link_to "Recently Updated", brand_path(@brand.id, filter: "recent") %></span>
+    </p>
     <p><%= page_entries_info @products %></p>
     <div class="card-deck">
         <%= render @products %>

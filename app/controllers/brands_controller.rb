@@ -4,7 +4,18 @@ class BrandsController < ApplicationController
   end
 
   def show
+    @filter = params[:filter]
     @brand = Brand.includes(:products).order("products.name").find(params[:id])
-    @products = @brand.products.page(params[:page])
+    @products = if @filter == "new"
+                  @brand.products
+                        .where(created_at: (Date.today - 3.days)..Date.today + 1)
+                        .page(params[:page]).order(:name)
+                elsif @filter == "recent"
+                  @brand.products
+                        .where(updated_at: (Date.today - 3.days)..Date.today + 1)
+                        .page(params[:page]).order(:name)
+                else
+                  @brand.products.page(params[:page]).order(:name)
+                end
   end
 end

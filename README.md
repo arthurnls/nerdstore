@@ -104,7 +104,7 @@
 - [x] Update the other index and show pages (departments categories brands)
 - [x] Add Breadcrumbs
 - [x] Add seed for Provinces
-- [] Add pagination in products listings.
+- [x] Add pagination in products listings.
 - [] Add filtering in products listings.
 - [] Add searching
 - [] Implement Twitter Bot
@@ -132,9 +132,7 @@
 </div>
 
 
-
-
-
+## To add Sales later maybe?
 
 Sales table
 # id
