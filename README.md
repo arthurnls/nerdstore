@@ -130,3 +130,20 @@
 <div style="display: block; text-align: center; padding: 1rem; max-width:100%; height:auto;">
     <img src="./docs/ecommerce.png">
 </div>
+
+
+
+
+
+
+Sales table
+# id
+# name
+# value (10)
+# type ($ / %)
+# products (fk_has_many)
+has_many: products
+
+Products table
+# sale (fk_belongs_to)
+belongs_to :sale, optional: true

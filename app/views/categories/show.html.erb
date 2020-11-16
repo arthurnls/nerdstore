@@ -15,11 +15,13 @@
 
 <h1><%= @category.name %></h1>
 
-<% if @category.products.empty? %>
+<% if @products.empty? %>
     <p>There are no products found.</p>
 <% else %>
-    <p>Listing all <%= @category.products.count %> products</p>
+    <p><%= page_entries_info @products %></p>
     <div class="card-deck">
-        <%= render @category.products %>
+        <%= render @products %>
     </div>
 <% end %>
+
+<%= paginate @products, window: 2 %>

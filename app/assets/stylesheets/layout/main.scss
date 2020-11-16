@@ -105,3 +105,55 @@ li {
     content: "";
     margin-bottom: 1rem;
 }
+nav.pagination > span > a {
+    color: inherit;
+    text-decoration: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+span.page {
+    line-height: 1rem;
+    color: #757575;
+    border-radius: 50px;
+    border: 1px solid #757575;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+span.first,
+span.last {
+    line-height: 1rem;
+    color: #757575;
+    border-radius: 50px;
+    border: 1px solid #757575;
+    width: 80px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+span.first:hover,
+span.page:hover,
+span.last:hover {
+    background: #00acb7;
+    color: #fff;
+}
+span.page.current {
+    background: #00acb7;
+    color: #fff;
+    width: auto;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: 1px solid #00acb7;
+}
+span.page.gap {
+    border: none;
+}
+span.prev,
+span.next {
+    display: none;
+}

@@ -276,6 +276,7 @@ DEPENDENCIES
   devise
   jbuilder (~> 2.7)
   jquery-rails
+  kaminari
   listen (~> 3.2)
   nokogiri
   puma (~> 4.1)

@@ -11,9 +11,10 @@
 <% if @products.empty? %>
     <p>There are no products found.</p>
 <% else %>
-    <p>List of all products</p>
+    <p><%= page_entries_info @products %></p>
     <div class="card-deck">
         <%= render @products %>
     </div>
 <% end %>
 
+<%= paginate @products, window: 2 %>

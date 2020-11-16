@@ -14,11 +14,13 @@
 
 <h1><%= @brand.name %></h1>
 
-<% if @brand.products.empty? %>
+<% if @products.empty? %>
     <p>There are no products found.</p>
 <% else %>
-    <p>Listing all <%= @brand.products.count %> products</p>
+    <p><%= page_entries_info @products %></p>
     <div class="card-deck">
-        <%= render @brand.products %>
+        <%= render @products %>
     </div>
 <% end %>
+
+<%= paginate @products, window: 2 %>
