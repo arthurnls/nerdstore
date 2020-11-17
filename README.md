@@ -106,7 +106,7 @@
 - [x] Add seed for Provinces
 - [x] Add pagination in products listings.
 - [x] Add filtering in products listings.
-- [] Add searching
+- [x] Add searching
 - [] Implement Twitter Bot
     - [] Every time you hit search, twitter bot will post?
 - [] Add seed for Customer
