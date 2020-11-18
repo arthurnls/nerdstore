@@ -6,11 +6,3 @@ $twitterClient = Twitter::REST::Client.new do |config|
   config.access_token        = ENV["TWITTER_ACCESS_TOKEN"] # "YOUR_ACCESS_TOKEN"
   config.access_token_secret = ENV["TWITTER_ACCESS_TOKEN_SECRET"] # "YOUR_ACCESS_SECRET"
 end
-
-# ENV['TWITTER_KEY']
-# ENV['TWITTER_SECRET_KEY']
-# ENV['TWITTER_BEARER_TOKEN']
-# ENV['TWITTER_ACCESS_TOKEN']
-# ENV['TWITTER_ACCESS_TOKEN_SECRET']
-
-

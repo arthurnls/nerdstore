@@ -35,13 +35,17 @@ class PagesController < ApplicationController
                          " within \"#{@category.name}\" category"
                        end
 
-    message = if total_found == 0
-                "Hey, looks like someone did a search for \"#{@searched_term}\"#{category_message} and nothing was found :( . Maybe try to tweak the search a little?"
-              elsif total_found < 20
-                "Nice! Someone searched for \"#{@searched_term}\"#{category_message} and we found #{total_found} products for him/her!"
-              else
-                "Whoa! A search has been submitted for \"#{@searched_term}\"#{category_message} and we found #{total_found} products! Amazing!"
-              end
-    $twitterClient.update(message)
+    begin
+      message = if total_found == 0
+                  "Hey, looks like someone did a search for \"#{@searched_term}\"#{category_message} and nothing was found :( . Maybe try to tweak the search a little?"
+                elsif total_found < 20
+                  "Nice! Someone searched for \"#{@searched_term}\"#{category_message} and we found #{total_found} products for him/her!"
+                else
+                  "Whoa! A search has been submitted for \"#{@searched_term}\"#{category_message} and we found #{total_found} products! Amazing!"
+                end
+      $twitterClient.update(message)
+    rescue StandardError
+      # In case we get an error to tweet, thats fine, just skip it.
+    end
   end
 end
