@@ -28,5 +28,20 @@ class PagesController < ApplicationController
                            .where("name LIKE ? OR description LIKE ?", "%#{@searched_term}%", "%#{@searched_term}%")
                            .page(params[:page]).order(:name)
     end
+    total_found = @products.count
+    category_message = if @category.nil?
+                         ""
+                       else
+                         " within \"#{@category.name}\" category"
+                       end
+
+    message = if total_found == 0
+                "Hey, looks like someone did a search for \"#{@searched_term}\"#{category_message} and nothing was found :( . Maybe try to tweak the search a little?"
+              elsif total_found < 20
+                "Nice! Someone searched for \"#{@searched_term}\"#{category_message} and we found #{total_found} products for him/her!"
+              else
+                "Whoa! A search has been submitted for \"#{@searched_term}\"#{category_message} and we found #{total_found} products! Amazing!"
+              end
+    $twitterClient.update(message)
   end
 end

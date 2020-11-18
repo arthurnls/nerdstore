@@ -1,3 +1,5 @@
+gem 'dotenv-rails', groups: [:development, :test]
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -37,6 +39,7 @@ gem 'devise'      # Admin Authentication Gem
 
 gem "nokogiri"
 gem "kaminari"
+gem "twitter"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
