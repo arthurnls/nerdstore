@@ -13,6 +13,9 @@
 <p>Below you will find the products added to your shopping cart</p>
 
 <div class="container-white shopping-cart" style="margin: 0.5rem auto;">
+    <% if @cart.empty? %>
+        <h2>Your shopping cart is empty.</h2>
+    <% else %>
     <form class="shopping-cart-form" action="" method="post">
             <table class="shop-table shop_table_responsive woocommerce-cart-form__contents" cellspacing="0">
                 <thead>
@@ -25,33 +28,28 @@
                     </tr>
                 </thead>
                 <tbody>
+                <% @cart.each do |product| %>
                     <tr class="cart-item">
                         <td class="product-thumbnail">
                             <%# -----START----- PRODUCT IMAGE %>
-                            <a href="https://nerdstore.com.br/produto/livro-santo-guerreiro-roma-invicta-volume-1/">
-                                <picture class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail">
-                                    <source type="image/webp"
-                                        srcset="https://nerdstore.com.br/wp-content/uploads/2020/10/livro-santo-guerreiro-roma-invicta-01-300x300.jpg.webp 300w, https://nerdstore.com.br/wp-content/uploads/2020/10/livro-santo-guerreiro-roma-invicta-01-40x40.jpg.webp 40w, https://nerdstore.com.br/wp-content/uploads/2020/10/livro-santo-guerreiro-roma-invicta-01-250x250.jpg.webp 250w, https://nerdstore.com.br/wp-content/uploads/2020/10/livro-santo-guerreiro-roma-invicta-01-263x263.jpg.webp 263w, https://nerdstore.com.br/wp-content/uploads/2020/10/livro-santo-guerreiro-roma-invicta-01-545x545.jpg.webp 545w, https://nerdstore.com.br/wp-content/uploads/2020/10/livro-santo-guerreiro-roma-invicta-01-100x100.jpg.webp 100w, https://nerdstore.com.br/wp-content/uploads/2020/10/livro-santo-guerreiro-roma-invicta-01-32x32.jpg.webp 32w, https://nerdstore.com.br/wp-content/uploads/2020/10/livro-santo-guerreiro-roma-invicta-01.jpg.webp 800w"
-                                        sizes="(max-width: 300px) 100vw, 300px">
-                                    <img width="300" height="300"
-                                        src="https://nerdstore.com.br/wp-content/uploads/2020/10/livro-santo-guerreiro-roma-invicta-01-300x300.jpg"
-                                        alt="Livro Santo Guerreiro: Roma Invicta - Volume 1"
-                                        srcset="https://nerdstore.com.br/wp-content/uploads/2020/10/livro-santo-guerreiro-roma-invicta-01-300x300.jpg 300w, https://nerdstore.com.br/wp-content/uploads/2020/10/livro-santo-guerreiro-roma-invicta-01-768x768.jpg 768w, https://nerdstore.com.br/wp-content/uploads/2020/10/livro-santo-guerreiro-roma-invicta-01-40x40.jpg 40w, https://nerdstore.com.br/wp-content/uploads/2020/10/livro-santo-guerreiro-roma-invicta-01-250x250.jpg 250w, https://nerdstore.com.br/wp-content/uploads/2020/10/livro-santo-guerreiro-roma-invicta-01-263x263.jpg 263w, https://nerdstore.com.br/wp-content/uploads/2020/10/livro-santo-guerreiro-roma-invicta-01-545x545.jpg 545w, https://nerdstore.com.br/wp-content/uploads/2020/10/livro-santo-guerreiro-roma-invicta-01-100x100.jpg 100w, https://nerdstore.com.br/wp-content/uploads/2020/10/livro-santo-guerreiro-roma-invicta-01-32x32.jpg 32w, https://nerdstore.com.br/wp-content/uploads/2020/10/livro-santo-guerreiro-roma-invicta-01.jpg 800w, https://nerdstore.com.br/wp-content/uploads/2020/10/livro-santo-guerreiro-roma-invicta-01-263x263@2x.jpg 526w"
-                                        sizes="(max-width: 300px) 100vw, 300px">
-                                </picture>
-                            </a> </td>
+                            <% if product.images.count == 0 %>
+                                <%= link_to image_tag("image_coming_soon.jpg", alt:product.name + " missing image", class:"card-img-top product-image-show"), product_path(:id => product.id) %>
+                            <% else %>
+                                <%= link_to image_tag(product.images[0], alt:product.name + " image", class:"card-img-top product-image-show", style: "width: 80px; height:80px;"), product_path(:id => product.id) %>
+                            <% end %>
                             <%# -----END----- PRODUCT IMAGE %>
-                        <td class="product-name" data-title="Produto">
-                            <%# -----START----- PRODUCT NAME %>
-                            <a href="https://nerdstore.com.br/produto/livro-santo-guerreiro-roma-invicta-volume-1/">Pré-Venda
-                                Livro Santo Guerreiro: Roma Invicta - Volume 1</a> </td>
-                            <%# -----START----- PRODUCT NAME %>
-                        <td class="product-price" data-title="Preço">
-                            <%# -----START----- PRODUCT PRICE %>
-                            <span>R$54,90</span>
-                            <%# -----START----- PRODUCT PRICE %>
                         </td>
-                        <td class="product-quantity" data-title="Quantidade">
+                        <td class="product-name">
+                            <%# -----START----- PRODUCT NAME %>
+                            <%= link_to product.name, product_path(:id => product.id) %>
+                            <%# -----END----- PRODUCT NAME %>
+                        </td>
+                        <td class="product-price">
+                            <%# -----START----- PRODUCT PRICE %>
+                            <span>CDN$ <%= number_with_precision(product.price, precision: 2) %></span>
+                            <%# -----END----- PRODUCT PRICE %>
+                        </td>
+                        <td class="product-quantity">
                             <%# -----START----- PRODUCT QTY %>
                             <div class="product-quantity-changer">
                                 <button class="product-quantity-changer__trigger" data-cart-quantity-trigger="minus" type="button">
@@ -74,39 +72,28 @@
                                     </svg>
                                 </button>
                             </div>
-                            <%# -----START----- PRODUCT QTY %>
+                            <%# -----END----- PRODUCT QTY %>
                         </td>
                         <td class="product-subtotal" data-title="Subtotal">
                             <%# -----START----- PRODUCT SUBTOTAL %>
-                            <span>R$54,90</span>
-                            <%# -----START----- PRODUCT SUBTOTAL %>
+                            <span>CDN$ <%= number_with_precision(product.price, precision: 2) %></span>
+                            <%# -----END----- PRODUCT SUBTOTAL %>
                         <td class="product-remove">
                             <%# -----START----- PRODUCT DELETE %>
-                            <a data-gtm4wp_product_id="9788501304032"
-                                data-gtm4wp_product_name="Pré-Venda Livro Santo Guerreiro: Roma Invicta - Volume 1"
-                                data-gtm4wp_product_price="54.9" data-gtm4wp_product_cat="Presentes para Pais"
-                                data-gtm4wp_product_url="https://nerdstore.com.br/carrinho/"
-                                data-gtm4wp_product_variant="" data-gtm4wp_product_stocklevel="168"
-                                data-gtm4wp_product_brand=""
-                                href="https://nerdstore.com.br/carrinho/?remove_item=b12b9562e0669e2574f966d112462733&amp;_wpnonce=d1513f9ed1"
-                                class="remove" aria-label="Remover este item" data-product_id="711694"
-                                data-product_sku="9788501304032"><svg width="20" height="20" viewBox="0 0 20 20"
-                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M2.5 5H4.16667H17.5" stroke="#A9A9A9" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                            <%= link_to remove_from_cart_path(product), method: :delete, class: "remove" do %>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2.5 5H4.16667H17.5" stroke="#A9A9A9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                                     <path
                                         d="M6.6665 5.00008V3.33342C6.6665 2.89139 6.8421 2.46746 7.15466 2.1549C7.46722 1.84234 7.89114 1.66675 8.33317 1.66675H11.6665C12.1085 1.66675 12.5325 1.84234 12.845 2.1549C13.1576 2.46746 13.3332 2.89139 13.3332 3.33342V5.00008M15.8332 5.00008V16.6668C15.8332 17.1088 15.6576 17.5327 15.345 17.8453C15.0325 18.1578 14.6085 18.3334 14.1665 18.3334H5.83317C5.39114 18.3334 4.96722 18.1578 4.65466 17.8453C4.3421 17.5327 4.1665 17.1088 4.1665 16.6668V5.00008H15.8332Z"
-                                        stroke="#A9A9A9" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round"></path>
-                                    <path d="M8.3335 9.16675V14.1667" stroke="#A9A9A9" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"></path>
-                                    <path d="M11.6665 9.16675V14.1667" stroke="#A9A9A9" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                        stroke="#A9A9A9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M8.3335 9.16675V14.1667" stroke="#A9A9A9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M11.6665 9.16675V14.1667" stroke="#A9A9A9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
-                            </a>
-                            <%# -----START----- PRODUCT DELETE> %>
+                            <% end %>
+                            <%# -----END----- PRODUCT DELETE> %>
                         </td>
                     </tr>
+                <% end %>
                 </tbody>
             </table>
     </form>
@@ -116,9 +103,13 @@
 
     <div class="mt-4">
         <h2 class="cart__actions__title">Order Summary</h2>
-        <p>ORDER SUMMARY GOES HERE</p>
-        <button class="btn btn-success">Checkout</button>
+        <p>Subtotal (<%= "#{@total_items} item".pluralize(@total_items)%>)</p>
+        <p><span>CDN$ <%= number_with_precision(@subtotal, precision: 2) %></span></p>
+        <button class="btn btn-product-details">Checkout</button>
+
+
     </div>
+    <% end %>
 
 
 </div>

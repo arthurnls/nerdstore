@@ -32,8 +32,9 @@
 
 <% if @cart.include?(@product) %>
     <div class="mt-3 mb-3">
-        <span class="alert alert-success mt-4 mb-4">This product is in your cart</span>
+        <span class="alert alert-success">This product is in your cart</span>
     </div>
+    <%= button_to "Remove From Cart", remove_from_cart_path(@product), method: :delete, class: "btn btn-product-details" %>
 <% else %>
     <%= link_to "Add to Cart", add_to_cart_path(@product.id), method: :post, class:"btn btn-product-details" %>
 <% end %>
