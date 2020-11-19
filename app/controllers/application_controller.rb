@@ -9,6 +9,18 @@ class ApplicationController < ActionController::Base
   end
 
   def load_cart
-    @cart = Product.find(session[:cart])
+    @cart = []
+    session[:cart].each do |item|
+      product = Product.find(item["product"])
+      qty = item["qty"]
+      @cart << { product: product, qty: qty }
+    end
+
+    @subtotal = 0
+    @total_items = 0
+    @cart.each do |cart_item|
+      @subtotal += cart_item[:product].price * cart_item[:qty]
+      @total_items += cart_item[:qty]
+    end
   end
 end

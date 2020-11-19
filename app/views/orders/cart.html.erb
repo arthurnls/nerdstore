@@ -28,7 +28,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                <% @cart.each do |product| %>
+                <% @cart.each do |item| %>
+                    <% product = item[:product] %>
                     <tr class="cart-item">
                         <td class="product-thumbnail">
                             <%# -----START----- PRODUCT IMAGE %>
@@ -52,31 +53,18 @@
                         <td class="product-quantity">
                             <%# -----START----- PRODUCT QTY %>
                             <div class="product-quantity-changer">
-                                <button class="product-quantity-changer__trigger" data-cart-quantity-trigger="minus" type="button">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8 12H16" stroke="#A9A9A9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </svg>
-                                </button>
+                                <%= link_to "-", add_to_cart_path(product.id, cart_action:"-"), method: :post, class:"product-quantity-changer__trigger" %>
                                 <div class="quantity">
-                                    <input type="number" id="quantity_5fb5c8a02464b" class="input-quantity"
-                                        step="1" min="0" max="168" name="cart[b12b9562e0669e2574f966d112462733][qty]"
-                                        value="1" title="Qtd" size="4" placeholder="" inputmode="numeric">
+                                    <input type="number" class="input-quantity"
+                                        value="<%= item[:qty] %>" readonly>
                                 </div>
-                                <button class="product-quantity-changer__trigger" data-cart-quantity-trigger="plus"
-                                    type="button"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 8V16" stroke="#A9A9A9" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round"></path>
-                                        <path d="M8 12H16" stroke="#A9A9A9" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round"></path>
-                                    </svg>
-                                </button>
+                                <%= link_to "+", add_to_cart_path(product.id, cart_action:"+"), method: :post, class:"product-quantity-changer__trigger" %>
                             </div>
                             <%# -----END----- PRODUCT QTY %>
                         </td>
                         <td class="product-subtotal" data-title="Subtotal">
                             <%# -----START----- PRODUCT SUBTOTAL %>
-                            <span>CDN$ <%= number_with_precision(product.price, precision: 2) %></span>
+                            <span>CDN$ <%= number_with_precision(product.price * item[:qty], precision: 2) %></span>
                             <%# -----END----- PRODUCT SUBTOTAL %>
                         <td class="product-remove">
                             <%# -----START----- PRODUCT DELETE %>
@@ -102,14 +90,13 @@
 
 
     <div class="mt-4">
-        <h2 class="cart__actions__title">Order Summary</h2>
-        <p>Subtotal (<%= "#{@total_items} item".pluralize(@total_items)%>)</p>
-        <p><span>CDN$ <%= number_with_precision(@subtotal, precision: 2) %></span></p>
+        <h2 class="cart__actions__title mb-3">Order Summary</h2>
+        <p class="mb-0"><strong>Subtotal (<%= "#{@total_items} item".pluralize(@total_items)%>)</strong></p>
+        <p class="mb-3"><strong>CDN$ <%= number_with_precision(@subtotal, precision: 2) %></strong></p>
         <button class="btn btn-product-details">Checkout</button>
 
 
     </div>
     <% end %>
-
 
 </div>
