@@ -5,8 +5,6 @@ class PagesController < ApplicationController
 
   def contact; end
 
-  def cart; end
-
   def checkout; end
 
   # GET /search/?search_term=user+search+terms

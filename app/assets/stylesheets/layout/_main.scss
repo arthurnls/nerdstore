@@ -194,3 +194,100 @@ span.page-filter > a {
     padding: 0;
     justify-content: center;
 }
+
+.shopping-cart {
+    padding: 1rem 2rem;
+    border-radius: 16px;
+}
+.shopping-cart-form {
+}
+
+table.shop-table {
+    width: 100%;
+    border-collapse: separate;
+}
+
+table.shop-table thead {
+}
+table.shop-table thead th {
+    font-size: 14px;
+    font-weight: 400;
+    color: #757575;
+    text-align: left;
+    padding: 8px;
+    background-color: #fff;
+    border-bottom: 1px solid #e9eae9;
+}
+table.shop-table thead th.product-name {
+    padding-left: 40px;
+}
+tr.cart-item {
+}
+table.shop-table tbody td {
+    font-size: 14px;
+    font-weight: 400;
+    color: #757575;
+    text-align: left;
+    padding: 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #e9eae9;
+}
+td.product-thumbnail {
+    border-collapse: separate;
+    padding-left: 32px;
+    border-radius: 8px 0 0 8px;
+    border-left: 8px solid #00acb7;
+    width: 130px;
+}
+table.shop-table tbody td.product-name {
+    font-weight: 600;
+}
+table.shop-table tbody td.product-price {
+    width: 120px;
+    font-weight: 600;
+}
+table.shop-table tbody td.product-quantity {
+    width: 120px;
+    font-size: 16px;
+    color: #3b3a38;
+    font-weight: 600;
+    text-align: center;
+}
+table.shop-table tbody td.product-subtotal {
+    width: 120px;
+    font-weight: 600;
+}
+table.shop-table tbody td.product-remove {
+    padding-right: 40px;
+    width: 70px;
+}
+table.shop-table tbody td.product-quantity .product-quantity-changer {
+    display: inline-flex;
+    border: 1px solid #e9eae9;
+    border-radius: 27px;
+    padding: 4px 5px;
+}
+table.shop-table tbody td.product-quantity .quantity {
+}
+table.shop-table tbody td.product-quantity .quantity .input-quantity {
+    appearance: none;
+    height: 100%;
+    border: 0;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    width: 45px;
+}
+table.shop-table tbody td.product-quantity .product-quantity-changer__trigger {
+    border: 2px solid #a9a9a9;
+    appearance: none;
+    background-color: transparent;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: relative;
+    padding: 0;
+    cursor: pointer;
+}

@@ -69,6 +69,7 @@
     - rails g controller categories index show
     - rails g controller products index show
     - rails g controller brands index show
+    - rails g controller orders index show
 
 ### Active Admin tabs
 
@@ -107,8 +108,13 @@
 - [x] Add pagination in products listings.
 - [x] Add filtering in products listings.
 - [x] Add searching
-- [] Implement Twitter Bot
-    - [] Every time you hit search, twitter bot will post?
+- [X] Implement Twitter Bot
+    - [X] Every time you hit search, twitter bot will post?
+- [] Setup the purchasing process
+    - [] Setup Orders
+    - [] Setup Cart
+    - [] Setup checkout
+    - [] Setup User Accounts
 - [] Add seed for Customer
 - [] Add contact form to contact page
 
