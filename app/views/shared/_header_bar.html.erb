@@ -42,7 +42,7 @@
                 Minha conta
             </a>
         </nav>
-        <a class="header-desktop__main__cart" href="https://nerdstore.com.br/carrinho/">
+        <%= link_to cart_path, class: "header-desktop__main__cart" do %>
             <svg width="32" height="29" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M14 28C15.1046 28 16 27.1046 16 26C16 24.8954 15.1046 24 14 24C12.8954 24 12 24.8954 12 26C12 27.1046 12.8954 28 14 28Z"
@@ -54,7 +54,7 @@
                     d="M1 1H6.55556L10.2778 17.7639C10.4048 18.4033 10.7527 18.9777 11.2605 19.3865C11.7683 19.7953 12.4037 20.0125 13.0556 20H26.5556C27.2074 20.0125 27.8428 19.7953 28.3506 19.3865C28.8585 18.9777 29.2063 18.4033 29.3333 17.7639L31 7.66667H8.5"
                     stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
-            <span class="header-desktop__main__cart__counter">0</span>
-        </a>
+            <span class="header-desktop__main__cart__counter"><%= @cart.count %></span>
+        <% end %>
     </div>
 </div>
