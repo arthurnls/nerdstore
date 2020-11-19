@@ -17,5 +17,12 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.includes(:brand, { category: [:department] }).find(params[:id])
+    @is_on_cart = false
+    session[:cart].each do |item|
+      if item["product"] == @product.id
+        @is_on_cart = true
+        break
+      end
+    end
   end
 end
