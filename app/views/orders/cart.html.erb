@@ -89,7 +89,7 @@
         <h2 class="cart__actions__title mb-3">Order Summary</h2>
         <p class="mb-0"><strong>Subtotal (<%= "#{@total_items} item".pluralize(@total_items)%>)</strong></p>
         <p class="mb-3"><strong>CDN$ <%= number_with_precision(@subtotal, precision: 2) %></strong></p>
-        <%= button_to "Checkout", checkout_create_path(@cart), method: :post, class: "btn btn-product-details" %>
+        <%= button_to "Checkout", checkout_create_path, method: :post, class: "btn btn-product-details", remote: true, params: { cart: @cart } %>
     </div>
 <% end %>
 

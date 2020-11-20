@@ -41,6 +41,7 @@ gem "nokogiri" # for web scraping
 gem "kaminari" # for pagination
 gem "twitter" # twitter API
 gem "stripe" # stripe for payments
+gem "country_select" # needed for country selection when editing customer in active-admin
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

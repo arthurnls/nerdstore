@@ -1,0 +1,10 @@
+<%# Run javascript code when hiting checkout button. %>
+
+const stripe = Stripe("<%= Rails.configuration.stripe[:publishable_key] %>");
+console.log(stripe);
+
+stripe.redirectToCheckout({
+    sessionId: "<%= @session.id %>"
+}).then(function (result) {
+    console.log(result.error.message);
+});

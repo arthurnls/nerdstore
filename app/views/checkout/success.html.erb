@@ -1,0 +1,21 @@
+<div class="breadcrumbs">
+    <span>
+        <span>
+            <%= link_to "Home", root_path %> »
+            <span>
+                <strong class="breadcrumb_last" aria-current="page">Checkout Success</strong>
+            </span>
+        </span>
+    </span>
+</div>
+
+<h1>Purchase Succeeded</h1>
+
+<div class="alert alert-success">You have successfully finished your purchase</div>
+
+<%= link_to "Go to my orders", orders_path, class: "btn btn-product-details" %>
+
+
+
+<%= debug @session %>
+<%= debug @payment_intent %>
