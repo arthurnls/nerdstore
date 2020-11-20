@@ -1,5 +1,5 @@
 ActiveAdmin.register Order do
-  permit_params :cost_shipping, :cost_GST, :cost_PST, :cost_HST, :cost_discount, :shipping_address
+  permit_params :cost_shipping, :cost_GST, :cost_PST, :cost_HST, :cost_discount, :shipping_address, :status, :customer
   #
   # or
   #
