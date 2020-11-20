@@ -3,7 +3,8 @@ class OrdersController < ApplicationController
 
   def show; end
 
-  def cart; end
+  def cart
+  end
 
   def add_to_cart
     product_id = params[:id].to_i

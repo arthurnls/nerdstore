@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get "about", to: "pages#about"
   get "contact", to: "pages#contact"
   get "account", to: "pages#account"
-  get "checkout", to: "pages#checkout"
   get "search", to: "pages#search", as: "search"
 
   ##################################
@@ -15,6 +14,14 @@ Rails.application.routes.draw do
   post "orders/add_to_cart/:id", to: "orders#add_to_cart", as: "add_to_cart"
   delete "orders/remove_from_cart/:id", to: "orders#remove_from_cart", as: "remove_from_cart"
   resources "orders", only: %i[index show]
+
+   ##################################
+  # Checkout Routes
+  scope "/checkout" do
+    post "create", to: "checkout#create", as: "checkout_create"
+    get "cancel", to: "checkout#cancel", as: "checkout_cancel"
+    get "success", to: "checkout#success", as: "checkout_success"
+  end
 
   ##################################
   # Products Routes

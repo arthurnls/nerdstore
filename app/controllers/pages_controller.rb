@@ -5,8 +5,6 @@ class PagesController < ApplicationController
 
   def contact; end
 
-  def checkout; end
-
   # GET /search/?search_term=user+search+terms
   def search
     @searched_term = params[:search_term]
