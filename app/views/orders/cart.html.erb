@@ -13,9 +13,9 @@
 <p>Below you will find the products added to your shopping cart</p>
 
 <div class="container-white shopping-cart" style="margin: 0.5rem auto;">
-    <% if @cart.empty? %>
-        <h2>Your shopping cart is empty.</h2>
-    <% else %>
+<% if @cart.empty? %>
+    <h2>Your shopping cart is empty.</h2>
+<% else %>
     <form class="shopping-cart-form" action="" method="post">
             <table class="shop-table shop_table_responsive woocommerce-cart-form__contents" cellspacing="0">
                 <thead>
@@ -85,18 +85,12 @@
                 </tbody>
             </table>
     </form>
-
-
-
-
     <div class="mt-4">
         <h2 class="cart__actions__title mb-3">Order Summary</h2>
         <p class="mb-0"><strong>Subtotal (<%= "#{@total_items} item".pluralize(@total_items)%>)</strong></p>
         <p class="mb-3"><strong>CDN$ <%= number_with_precision(@subtotal, precision: 2) %></strong></p>
-        <button class="btn btn-product-details">Checkout</button>
-
-
+        <%= button_to "Checkout", checkout_create_path(@cart), method: :post, class: "btn btn-product-details" %>
     </div>
-    <% end %>
+<% end %>
 
 </div>

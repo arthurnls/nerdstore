@@ -37,9 +37,10 @@ gem 'jquery-rails'
 gem 'activeadmin' # Admin Dashboard Gem
 gem 'devise'      # Admin Authentication Gem
 
-gem "nokogiri"
-gem "kaminari"
-gem "twitter"
+gem "nokogiri" # for web scraping
+gem "kaminari" # for pagination
+gem "twitter" # twitter API
+gem "stripe" # stripe for payments
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

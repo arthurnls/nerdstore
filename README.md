@@ -70,6 +70,7 @@
     - rails g controller products index show
     - rails g controller brands index show
     - rails g controller orders index show
+    - rails g controller checkout
 
 ### Active Admin tabs
 
@@ -91,12 +92,28 @@
     - rails g migration add_tax_pst_to_provinces tax_pst:decimal
     - rails g migration add_tax_gst_to_provinces tax_gst:decimal
     - rails g migration add_tax_hst_to_provinces tax_hst:decimal
+    - rails g migration add_status_to_orders status:string
 
 ## Images info
 
 - Sizes
     - Fullsize: 670x670
     - Thumbnail: 208x208
+
+## External Packages used
+
+gem "nokogiri" # for web scraping
+gem "kaminari" # for pagination
+gem "twitter" # twitter API
+
+- nokogiri
+    - Used for web scrapping
+- kaminari
+    - Used for for pagination
+- twitter
+    - Used for accessing twitter API
+- Stripe
+    - Used for processing payments
 
 ## Possibly Missing TO-DOs
 
@@ -111,17 +128,16 @@
 - [X] Implement Twitter Bot
     - [X] Every time you hit search, twitter bot will post?
 - [] Setup the purchasing process
-    - [] Setup Orders
-    - [] Setup Cart
+    - [x] Setup Cart
     - [] Setup checkout
+    - [] Setup Orders
     - [] Setup User Accounts
 - [] Add seed for Customer
 - [] Add contact form to contact page
 
-- [] Might need a few controllers later? A order/checkout maybe?
-- [] Add status to order (pending paid shipped)
-- [] Add tax rate for each province
-- [] Maybe will need to add active admin for `OrderDetail` and `Image`
+- [x] Add status to order (pending paid shipped)
+- [x] Add tax rate for each province
+- [] Maybe will need to add active admin for `OrderDetail`
 
 - [] Being able to edit contact and about page. Worth 2PTs
 - [] Convert css to use scss variables etc. Worth 2PTs
