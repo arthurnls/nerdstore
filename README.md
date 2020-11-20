@@ -129,9 +129,9 @@ gem "twitter" # twitter API
     - [X] Every time you hit search, twitter bot will post?
 - [] Setup the purchasing process
     - [x] Setup Cart
-    - [] Setup checkout
-    - [] Setup Orders
+    - [x] Setup checkout
     - [] Setup User Accounts
+    - [] Setup Orders
 - [] Add seed for Customer
 - [] Add contact form to contact page
 

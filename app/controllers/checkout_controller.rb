@@ -18,13 +18,17 @@ class CheckoutController < ApplicationController
       }
     end
     taxes = @subtotal * get_taxes_percent
-    tax_percent_text = number_with_precision(get_taxes_percent * 100, precision: 2)
+    tax_percent_text = format("%.2f", (get_taxes_percent * 100))
     products << {
       name:     "Sales Taxes (#{tax_percent_text}%)",
       amount:   (taxes * 100).to_i,
       currency: "cad",
       quantity: 1
     }
+
+    ######################################
+    ###### MUST CREATE ORDER PENDING #####
+    ######################################
 
     begin
       # Settign up a Stripe Session for payment.
@@ -46,6 +50,9 @@ class CheckoutController < ApplicationController
     session_id = params[:session_id]
     @session = Stripe::Checkout::Session.retrieve(session_id)
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
+    ######################################
+    ## MUST CHANGE STATUS ORDER TO PAID ##
+    ######################################
   end
 
   def cancel; end
