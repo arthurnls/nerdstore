@@ -1,5 +1,6 @@
 ActiveAdmin.register Order do
   permit_params :cost_shipping, :cost_GST, :cost_PST, :cost_HST, :cost_discount, :shipping_address, :status, :customer
+
   #
   # or
   #
@@ -8,5 +9,4 @@ ActiveAdmin.register Order do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
 end
