@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   # Pages Routes
   get "about", to: "pages#about"
   get "contact", to: "pages#contact"
-  get "account", to: "pages#account"
   get "search", to: "pages#search", as: "search"
 
   ##################################
@@ -15,7 +14,7 @@ Rails.application.routes.draw do
   delete "orders/remove_from_cart/:id", to: "orders#remove_from_cart", as: "remove_from_cart"
   resources "orders", only: %i[index show]
 
-   ##################################
+  ##################################
   # Checkout Routes
   scope "/checkout" do
     post "create", to: "checkout#create", as: "checkout_create"
@@ -38,6 +37,16 @@ Rails.application.routes.draw do
   ##################################
   # Brands Routes
   resources "brands", only: %i[index show]
+
+  ##################################
+  # Customers Routes
+  # resources "customers", only: %i[index login logout register]
+  scope "/customers" do
+    get "index", to: "customers#index", as: "customers_index"
+    post "login", to: "customers#login", as: "customers_login"
+    post "register", to: "customers#register", as: "customers_register"
+    get "logout", to: "customers#logout", as: "customers_logout"
+  end
 
   ##################################
   # Active Admin Routes

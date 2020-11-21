@@ -71,6 +71,7 @@
     - rails g controller brands index show
     - rails g controller orders index show
     - rails g controller checkout
+    - rails g controller customer
 
 ### Active Admin tabs
 
@@ -93,6 +94,7 @@
     - rails g migration add_tax_gst_to_provinces tax_gst:decimal
     - rails g migration add_tax_hst_to_provinces tax_hst:decimal
     - rails g migration add_status_to_orders status:string
+    - rails g migration rename_customer_column_password_password_digest
 
 ## Images info
 
@@ -132,7 +134,6 @@ gem "twitter" # twitter API
     - [x] Setup checkout
     - [] Setup User Accounts
     - [] Setup Orders
-- [] Add seed for Customer
 - [] Add contact form to contact page
 
 - [x] Add status to order (pending paid shipped)

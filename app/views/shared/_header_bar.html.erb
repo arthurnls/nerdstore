@@ -38,9 +38,7 @@
         <%= render partial: "shared/search_form" %>
 
         <nav class="header-desktop__main__account header-desktop__main__account--logged-in">
-            <a href="https://nerdstore.com.br/categoria/vestuario/camisetas/" class="header-desktop__main__account__trigger">
-                Minha conta
-            </a>
+            <%= link_to "My Account", customers_path, class: "header-desktop__main__account__trigger" %>
         </nav>
         <%= link_to cart_path, class: "header-desktop__main__cart" do %>
             <svg width="32" height="29" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg">

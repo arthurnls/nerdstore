@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :initialize_session
   before_action :load_cart
+  before_action :auth
 
   private
 
@@ -22,5 +23,9 @@ class ApplicationController < ActionController::Base
       @subtotal += cart_item[:product].price * cart_item[:qty]
       @total_items += cart_item[:qty]
     end
+  end
+
+  def auth
+    @logged_in_user = session[:customer_id]
   end
 end
