@@ -1,0 +1,83 @@
+
+
+
+
+
+<% if @error_message %>
+<div class="alert alert-danger">
+    <p><%= @error_message %></p>
+</div>
+<% end %>
+
+
+
+
+<div class="row">
+    <div class="col">
+    <h2><strong>Register</strong></h2>
+        <%= form_with url: customers_login_post_path, class: "login_form" do |f| %>
+        <p class="login_form_row">
+            <%= f.label "Email" %>
+            <%= f.text_field :email %>
+        </p>
+        <p class="login_form_row">
+            <%= f.label "Password" %>
+            <%= f.password_field :password %>
+        </p>
+        <p class="login_form_row">
+            <%= f.label "Confirm Password" %>
+            <%= f.password_field :password_confirmation %>
+        </p>
+        <p class="login_form_row">
+            <%= f.submit "Login", class: "btn btn-submit" %>
+        </p>
+        <% end %>
+    </div>
+    <div class="col">
+        <h2><strong>Register</strong></h2>
+        <%= form_with url: customers_register_path, class: "login_form" do |f| %>
+        <p class="login_form_row">
+            <%= f.label "Email" %>
+            <%= f.text_field :email %>
+        </p>
+        <p class="login_form_row">
+            <%= f.label "Password" %>
+            <%= f.password_field :password %>
+        </p>
+        <p class="login_form_row">
+            <%= f.label "Confirm Password" %>
+            <%= f.password_field :password_confirmation %>
+        </p>
+        <hr />
+        <p class="login_form_row">
+            <%= f.label "Name" %>
+            <%= f.text_field :name %>
+        </p>
+        <p class="login_form_row">
+            <%= f.label "Country" %>
+            <%= f.text_field :country %>
+        </p>
+        <p class="login_form_row">
+            <%= f.label "Address" %>
+            <%= f.text_field :address %>
+        </p>
+        <p class="login_form_row">
+            <%= f.label "City" %>
+            <%= f.text_field :city %>
+        </p>
+        <p class="login_form_row">
+            <%= f.label "Postal Code" %>
+            <%= f.text_field :postal_code, maxlength: 6 %>
+        </p>
+        <p class="login_form_row">
+            <%= f.label "Province" %>
+            <%= f.collection_select :province_code, @provinces, :code, :name %>
+        </p>
+        <p class="login_form_row">
+            <%= f.submit "Register", class: "btn btn-submit" %>
+        </p>
+        <% end %>
+    </div>
+</div>
+
+

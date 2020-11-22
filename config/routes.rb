@@ -42,8 +42,9 @@ Rails.application.routes.draw do
   # Customers Routes
   # resources "customers", only: %i[index login logout register]
   scope "/customers" do
-    get "index", to: "customers#index", as: "customers_index"
-    post "login", to: "customers#login", as: "customers_login"
+    get "/", to: "customers#index", as: "customers"
+    get "auth", to: "customers#auth", as: "customers_auth"
+    post "login", to: "customers#login", as: "customers_login_post"
     post "register", to: "customers#register", as: "customers_register"
     get "logout", to: "customers#logout", as: "customers_logout"
   end

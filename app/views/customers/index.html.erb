@@ -11,26 +11,27 @@
 
 <h1>My Account</h1>
 <h2 class="mt-3 mb-3">Account Details</h2>
-<% if @logged_in_user.nil? %>
+<% if @current_customer.nil? %>
     <% if @error_message %>
     <div class="alert alert-danger">
-        <h2><%= @error_message %></h2>
-        <%= link_to "Register/Login", root_path, class: "btn btn-product-details" %>
+        <h2>An error has occurred</h2>
+        <p><%= @error_message %></p>
+        <%= link_to "Register/Login", customers_auth_path, class: "btn btn-product-details" %>
     </div>
     <% else %>
     <div class="alert alert-danger">
         <h2>Your have to be logged in to access this page.</h2>
-        <%= link_to "Register/Login", root_path, class: "btn btn-product-details" %>
+        <%= link_to "Register/Login", customers_auth_path, class: "btn btn-product-details" %>
     </div>
     <% end %>
 
 <% else %>
-<p>Below you will find your account details</p>
-
+<p>You are logged in. Below you will find your account details</p>
+<%= link_to "Logout Now", customers_logout_path, class: "btn btn-product-details" %>
 <div class="container-white shopping-cart" style="margin: 0.5rem auto;">
     <h2>TODO</h2>
 </div>
 
 <% end %>
 
-
+<%= debug @current_customer %>

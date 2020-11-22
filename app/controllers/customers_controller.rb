@@ -1,57 +1,70 @@
 class CustomersController < ApplicationController
   def index; end
 
-  def register
-    user_data = params["user"]
-    # User params
-    user_name = user_data["name"]
-    user_email = user_data["email"]
-    user_password = user_data["password"]
-    user_password_confirmation = user_data["password_confirmation"]
-    user_address = user_data["address"]
-    user_city = user_data["city"]
-    user_postal_code = user_data["postal_code"]
-    user_country = user_data["country"]
-    user_province_code = user_data["province_code"]
+  def auth
+    redirect_to customers_path unless @current_customer.nil?
+    @error_message = flash[:error_message] if flash[:error_message]
+    @provinces = Province.all
+    @customer = Customer.new
+  end
 
-    province = Province.find_by(code: user_province_code)
-    customer = Customer.create!(
-      name:                  user_name,
-      email:                 user_email,
-      password:              user_password,
-      password_confirmation: user_password_confirmation,
-      address_line:          user_address,
-      city:                  user_city,
-      postal_code:           user_postal_code,
-      country:               user_country,
-      province:              province
-    )
+  def register
+    begin
+      # User params
+      user_name = params["name"]
+      user_email = params["email"]
+      user_password = params["password"]
+      user_password_confirmation = params["password_confirmation"]
+      user_address = params["address"]
+      user_city = params["city"]
+      user_postal_code = params["postal_code"]
+      user_country = params["country"]
+      user_province_code = params["province_code"]
+
+      province = Province.find_by(code: user_province_code)
+      customer = Customer.create!(
+        name:                  user_name,
+        email:                 user_email,
+        password:              user_password,
+        password_confirmation: user_password_confirmation,
+        address_line:          user_address,
+        city:                  user_city,
+        postal_code:           user_postal_code,
+        country:               user_country,
+        province:              province
+      )
+    rescue StandardError => e
+      customer = nil
+      @error_message = e.message
+    end
     # province_id: province.id
     if customer
       session[:customer_id] = customer.id
       redirect_to customers_path
     else
-      @error_message = "Something went wrong when registering, please try again."
-      redirect_to customers_path
+      if @error_message.nil?
+        @error_message = "Something went wrong when registering, please try again."
+      end
+      redirect_to(customers_auth_path, { flash: { error_message: @error_message } })
     end
   end
 
   def login
-    user_data = params["user"]
     customer = Customer
-               .find_by(email: user_data["email"])
-               .try(:authenticate, user_data["password"])
+               .find_by(email: params["email"])
+               .try(:authenticate, params["password"])
     if customer
       session[:customer_id] = customer.id
       redirect_to customers_path
     else
       @error_message = "Something went wrong login in, please try again."
-      redirect_to customers_path
+      redirect_to(customers_auth_path, { flash: { error_message: @error_message } })
     end
   end
 
   def logout
-    session[:customer_id] = nil
-    @logged_in_user = nil
+    reset_session
+    # session[:customer_id] = nil
+    # @current_customer = nil
   end
 end

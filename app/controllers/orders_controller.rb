@@ -1,10 +1,16 @@
 class OrdersController < ApplicationController
   def index; end
 
-  def show; end
-
-  def cart
+  def show
+    if @current_customer
+      # do whatever is needed
+    else
+      # user is not logged in, please login to access this page
+      redirect_to orders_path
+    end
   end
+
+  def cart; end
 
   def add_to_cart
     product_id = params[:id].to_i
