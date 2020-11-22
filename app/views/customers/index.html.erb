@@ -26,8 +26,9 @@
     <% end %>
 
 <% else %>
-<p>You are logged in. Below you will find your account details</p>
-<%= link_to "Logout Now", customers_logout_path, class: "btn btn-product-details" %>
+<p>Below you will find your account details
+<%= link_to "Logout Now", customers_logout_path, method: :post, class: "btn btn-product-details ml-3" %>
+</p>
 <div class="container-white shopping-cart" style="margin: 0.5rem auto;">
     <h2>TODO</h2>
 </div>

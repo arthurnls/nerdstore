@@ -1,10 +1,12 @@
 class CheckoutController < ApplicationController
   def create
-    if @cart.count == 0
+    if @cart.count == 0 || @current_customer.nil?
       redirect_to request.referer
       return
     end
 
+    ######################################
+    ######## SETUP PRODUCTS LIST #########
     # Setup the products array to pass on to Stripe session
     products = []
     @cart.each do |item|
@@ -25,11 +27,29 @@ class CheckoutController < ApplicationController
       currency: "cad",
       quantity: 1
     }
+    ######################################
 
     ######################################
     ###### MUST CREATE ORDER PENDING #####
+    order = Order.create(
+      id:               "",
+      cost_shipping:    "",
+      cost_GST:         "",
+      cost_PST:         "",
+      cost_HST:         "",
+      cost_discount:    "",
+      shipping_address: "",
+      created_at:       "",
+      updated_at:       "",
+      customer_id:      "",
+      status:           "pending"
+    )
+    # STATUS: pending paid shipped
+    ######################################
     ######################################
 
+    ######################################
+    ############ STRIPE PAYMMENT #########
     begin
       # Settign up a Stripe Session for payment.
       @session = Stripe::Checkout::Session.create(
@@ -43,6 +63,7 @@ class CheckoutController < ApplicationController
       redirect_to request.referer
       nil
     end
+    ######################################
   end
 
   def success

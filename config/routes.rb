@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     get "auth", to: "customers#auth", as: "customers_auth"
     post "login", to: "customers#login", as: "customers_login_post"
     post "register", to: "customers#register", as: "customers_register"
-    get "logout", to: "customers#logout", as: "customers_logout"
+    post "logout", to: "customers#logout", as: "customers_logout"
   end
 
   ##################################

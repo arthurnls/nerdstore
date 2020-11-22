@@ -64,7 +64,6 @@ class CustomersController < ApplicationController
 
   def logout
     reset_session
-    # session[:customer_id] = nil
-    # @current_customer = nil
+    redirect_to root_path
   end
 end

@@ -2,11 +2,11 @@ class OrdersController < ApplicationController
   def index; end
 
   def show
-    if @current_customer
-      # do whatever is needed
+    if @current_customer.nil?
+      # user is not logged in
+      redirect_to customers_auth_path
     else
-      # user is not logged in, please login to access this page
-      redirect_to orders_path
+      # do whatever is needed
     end
   end
 

@@ -132,7 +132,7 @@ gem "twitter" # twitter API
 - [] Setup the purchasing process
     - [x] Setup Cart
     - [x] Setup checkout
-    - [] Setup User Accounts
+    - [x] Setup User Accounts
     - [] Setup Orders
 - [] Add contact form to contact page
 

@@ -17,9 +17,9 @@ class ApplicationController < ActionController::Base
       @cart << { product: product, qty: qty }
     end
 
+    @subtotal = 0
+    @total_items = 0
     if @cart.any?
-      @subtotal = 0
-      @total_items = 0
       @cart.each do |cart_item|
         @subtotal += cart_item[:product].price * cart_item[:qty]
         @total_items += cart_item[:qty]
