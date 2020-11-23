@@ -111,6 +111,7 @@ class CheckoutController < ApplicationController
     ## MUST CHANGE STATUS ORDER TO PAID ##
     order = Order.find(order_id)
     order.status = "paid"
+    order.payment_id = @payment_intent.id
     order.save
     ######################################
     session[:cart] = []

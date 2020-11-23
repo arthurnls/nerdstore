@@ -129,16 +129,17 @@ gem "twitter" # twitter API
 - [x] Add searching
 - [X] Implement Twitter Bot
     - [X] Every time you hit search, twitter bot will post?
-- [] Setup the purchasing process
+- [x] Setup the purchasing process
     - [x] Setup Cart
     - [x] Setup checkout
     - [x] Setup User Accounts
-    - [] Setup Orders
+    - [x] Setup Orders
+- [] NEXT STEP: xxx
+- [] Maybe will need to add active admin for `OrderDetail`
 - [] Add contact form to contact page
 
 - [x] Add status to order (pending paid shipped)
 - [x] Add tax rate for each province
-- [] Maybe will need to add active admin for `OrderDetail`
 
 - [] Being able to edit contact and about page. Worth 2PTs
 - [] Convert css to use scss variables etc. Worth 2PTs

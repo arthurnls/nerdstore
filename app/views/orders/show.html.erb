@@ -94,8 +94,11 @@
 
 
 
-
-
+    <% if not @order.payment_id.nil? %>
+        <div class="alert alert-success mt-4">
+            <p>This order have been paid</p>
+        </div>
+    <% end %>
 
 
     </div>
