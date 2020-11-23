@@ -5,9 +5,10 @@
 </div>
 <% end %>
 
+<% if @current_customer.nil? %>
 <div class="row">
     <div class="col">
-    <h2><strong>Register</strong></h2>
+    <h2><strong>Login</strong></h2>
         <%= form_with url: customers_login_post_path, class: "login_form" do |f| %>
         <p class="login_form_row">
             <%= f.label "Email" %>
@@ -72,3 +73,9 @@
         <% end %>
     </div>
 </div>
+<% else %>
+<div class="alert alert-danger">
+    <p>You are already logged in.</p>
+    <%= link_to "Go To My Account", customers_path, class: "btn btn-product-details" %>
+</div>
+<% end %>

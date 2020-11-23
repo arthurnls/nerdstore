@@ -1,12 +1,20 @@
 class OrdersController < ApplicationController
-  def index; end
+  def index
+    @orders = @current_customer.orders.order("created_at DESC")
+  end
 
   def show
     if @current_customer.nil?
       # user is not logged in
       redirect_to customers_auth_path
     else
-      # do whatever is needed
+      @order = Order.includes(:products).find(params[:id])
+      @total_products_cost = 0
+      @order.order_details.each do |detail|
+        @total_products_cost += (detail.purchase_price * detail.quatity)
+      end
+      @total_before_tax = @total_products_cost + @order.cost_shipping - @order.cost_discount
+      @total_after_tax = @total_before_tax + @order.cost_GST + @order.cost_PST + @order.cost_HST
     end
   end
 

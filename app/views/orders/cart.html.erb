@@ -20,9 +20,9 @@
             <table class="shop-table shop_table_responsive woocommerce-cart-form__contents" cellspacing="0">
                 <thead>
                     <tr>
-                        <th class="product-name" colspan="2">Produto</th>
-                        <th class="product-price">Preço</th>
-                        <th class="product-quantity">Quantidade</th>
+                        <th class="product-name" colspan="2">Product</th>
+                        <th class="product-price">Price</th>
+                        <th class="product-quantity">Quantity</th>
                         <th class="product-subtotal">Subtotal</th>
                         <th class="product-remove">&nbsp;</th>
                     </tr>
@@ -66,6 +66,7 @@
                             <%# -----START----- PRODUCT SUBTOTAL %>
                             <span>CDN$ <%= number_with_precision(product.price * item[:qty], precision: 2) %></span>
                             <%# -----END----- PRODUCT SUBTOTAL %>
+                        </td>
                         <td class="product-remove">
                             <%# -----START----- PRODUCT DELETE %>
                             <%= link_to remove_from_cart_path(product), method: :delete, class: "remove" do %>

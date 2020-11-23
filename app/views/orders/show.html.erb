@@ -1,2 +1,102 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
+<div class="breadcrumbs">
+    <span>
+        <span>
+            <%= link_to "Home", root_path %> »
+            <span>
+                <%= link_to "My Account", customers_path %> »
+                <span>
+                    <%= link_to "My Orders", orders_path %> »
+                    <span>
+                        <strong class="breadcrumb_last" aria-current="page">Order Details</strong>
+                    </span>
+                </span>
+            </span>
+        </span>
+    </span>
+</div>
+
+<h1>My Account</h1>
+<h2 class="mt-3 mb-3">Order Details</h2>
+<% if @current_customer.nil? %>
+    <div class="alert alert-danger">
+        <h2>Your have to be logged in to access this page.</h2>
+        <%= link_to "Register/Login", customers_auth_path, class: "btn btn-product-details" %>
+    </div>
+<% else %>
+    <p>Below you will find your order details
+        <%= link_to "Logout Now", customers_logout_path, method: :post, class: "btn btn-product-details ml-3" %>
+    </p>
+
+    <div class="container-white shopping-cart" style="margin: 0.5rem auto;">
+        
+
+
+
+
+            <div class="shopping-cart-form" action="" method="post">
+                <table class="shop-table shop_table_responsive woocommerce-cart-form__contents" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th class="product-name" colspan="2">Product</th>
+                            <th class="product-price">Price</th>
+                            <th class="product-quantity">Quantity</th>
+                            <th class="product-subtotal">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% @order.order_details.each do |detail| %>
+                        <% product = detail.product %>
+                        <tr class="cart-item">
+                            <td class="product-thumbnail">
+                                <%# -----START----- PRODUCT IMAGE %>
+                                <% if product.images.count == 0 %>
+                                    <%= link_to image_tag("image_coming_soon.jpg", alt:product.name + " missing image", class:"card-img-top product-image-show"), product_path(:id => product.id) %>
+                                <% else %>
+                                    <%= link_to image_tag(product.images[0], alt:product.name + " image", class:"card-img-top product-image-show", style: "width: 80px; height:80px;"), product_path(:id => product.id) %>
+                                <% end %>
+                                <%# -----END----- PRODUCT IMAGE %>
+                            </td>
+                            <td class="product-name">
+                                <%# -----START----- PRODUCT NAME %>
+                                <%= link_to product.name, product_path(:id => product.id) %>
+                                <%# -----END----- PRODUCT NAME %>
+                            </td>
+                            <td class="product-price">
+                                <%# -----START----- PRODUCT PRICE %>
+                                <span>CDN$ <%= number_with_precision(detail.purchase_price, precision: 2) %></span>
+                                <%# -----END----- PRODUCT PRICE %>
+                            </td>
+                            <td class="product-quantity">
+                                <%# -----START----- PRODUCT QTY %>
+                                <span><%= detail.quatity %></span>
+                                <%# -----END----- PRODUCT QTY %>
+                            </td>
+                            <td class="product-subtotal" data-title="Subtotal">
+                                <%# -----START----- PRODUCT SUBTOTAL %>
+                                <span>CDN$ <%= number_with_precision(detail.purchase_price * detail.quatity, precision: 2) %></span>
+                                <%# -----END----- PRODUCT SUBTOTAL %>
+                            </td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+            </div>
+        <div class="mt-4">
+            <h2 class="cart__actions__title mb-3">Order Summary</h2>
+            <p class="mb-0"><strong>Items (<%= @order.products.count %>)</strong>: CDN$ <%= number_with_precision(@total_products_cost, precision: 2) %></p>
+            <p class="mb-0"><strong>Shipping & Handling</strong>: CDN$ <%=number_with_precision( @order.cost_shipping, precision: 2) %></p>
+            <p class="mb-0"><strong>Total before tax</strong>: CDN$ <%= number_with_precision(@total_before_tax, precision: 2) %></p>
+            <p class="mb-0"><strong>Estimated GST</strong>: CDN$ <%= number_with_precision(@order.cost_GST, precision: 2) %></p>
+            <p class="mb-0"><strong>Estimated PST</strong>: CDN$ <%= number_with_precision(@order.cost_PST, precision: 2) %></p>
+            <p class="mb-0"><strong>Estimated HST</strong>: CDN$ <%= number_with_precision(@order.cost_HST, precision: 2) %></p>
+            <h4 class="mb-0"><strong>Order Total: CDN$ <%= number_with_precision(@total_after_tax, precision: 2) %></strong></h4>
+        </div>
+
+
+
+
+
+
+
+    </div>
+<% end %>

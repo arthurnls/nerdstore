@@ -24,15 +24,19 @@
         <%= link_to "Register/Login", customers_auth_path, class: "btn btn-product-details" %>
     </div>
     <% end %>
-
 <% else %>
 <p>Below you will find your account details
 <%= link_to "Logout Now", customers_logout_path, method: :post, class: "btn btn-product-details ml-3" %>
 </p>
 <div class="container-white shopping-cart" style="margin: 0.5rem auto;">
-    <h2>TODO</h2>
+    <h2><%= @current_customer.name %></h2>
+    <h5>Account Email: <%= @current_customer.email %></h5>
+    <p>
+      Shipping Address: <br/>
+      <%= @current_customer.address_line %>, <%= @current_customer.city %>, <%= @current_customer.province.name %>, <%= @current_customer.country %> <br/>
+      Postal Code: <%= @current_customer.postal_code %>
+    </p>
+    <%= link_to "My Orders", orders_path, class: "btn btn-product-details ml-3" %>
 </div>
 
 <% end %>
-
-<%= debug @current_customer %>

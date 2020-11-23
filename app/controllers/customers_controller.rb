@@ -1,11 +1,14 @@
 class CustomersController < ApplicationController
-  def index; end
+  def index
+    if @current_customer.nil?
+      # user is not logged in
+      redirect_to customers_auth_path
+    end
+  end
 
   def auth
-    redirect_to customers_path unless @current_customer.nil?
     @error_message = flash[:error_message] if flash[:error_message]
     @provinces = Province.all
-    @customer = Customer.new
   end
 
   def register
@@ -41,24 +44,33 @@ class CustomersController < ApplicationController
     if customer
       session[:customer_id] = customer.id
       redirect_to customers_path
+      nil
     else
       if @error_message.nil?
         @error_message = "Something went wrong when registering, please try again."
       end
       redirect_to(customers_auth_path, { flash: { error_message: @error_message } })
+      nil
     end
   end
 
   def login
+    unless params["password"] == params["password_confirmation"]
+      @error_message = "Sorry, password and password confirmation must match, please try again."
+      redirect_to(customers_auth_path, { flash: { error_message: @error_message } })
+      return
+    end
     customer = Customer
                .find_by(email: params["email"])
                .try(:authenticate, params["password"])
     if customer
       session[:customer_id] = customer.id
       redirect_to customers_path
+      nil
     else
-      @error_message = "Something went wrong login in, please try again."
+      @error_message = "Something went wrong logging in, please check credentials and try again."
       redirect_to(customers_auth_path, { flash: { error_message: @error_message } })
+      nil
     end
   end
 
